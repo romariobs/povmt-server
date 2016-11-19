@@ -32,8 +32,24 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
+  'GET /user': { 
+    'UserController' : 'index' 
+  },
+
+  'GET /user/:id': { 
+    'UserController': 'find' 
+  },
+
+  'POST /user': { 
+    'UserController' : 'create' 
+  },
+
+  'PUT /user/:id': { 
+    'UserController' : 'update' 
+  },
+
+  'DELETE /user/:id': { 
+    'UserController' : 'destroy' 
   }
 
   /***************************************************************************
@@ -41,7 +57,7 @@ module.exports.routes = {
   * Custom routes here...                                                    *
   *                                                                          *
   * If a request to a URL doesn't match any of the custom routes above, it   *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
+  * is matched against Sails route 'UserController's. See `config/'UserController's.js`    *
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
