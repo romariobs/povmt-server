@@ -18,8 +18,7 @@ module.exports = {
 	* @desc API Route from 'GET /user', to retrieve all users.
 	*/
 	find : function(req, res){
-		//TODO .. need implementation 
-
+		
 		var query = User.find();
 
 	    var limit = req.param('limit');
@@ -72,8 +71,34 @@ module.exports = {
 	* @desc API Route from 'GET /user/:id', to retrieve only one specific user.
 	*/
 	findOne : function(req, res){
-		//TODO .. need implementation 
-		res.json("{status :'Getting by findOne' "+req.param('id')+" }");	
+
+		var responseObject = {};
+
+		User.findOne( req.param('id'), function foundUser(err, user){
+			
+			if (err){
+				responseObject = {
+					status : 500,
+					message : "error search user with id " + req.param('id'),
+					error : err
+				}
+				return res.json(responseObject);
+			}
+
+			if (!user){
+				responseObject = {
+					status : 404,
+					message : "User doesn\'t exist."
+				}
+				return res.json(responseObject);
+			}
+
+			responseObject = {
+				status : 200,
+				user : user
+			}
+			return res.json(responseObject);
+		});
 	},
 	
 	/**
@@ -118,8 +143,27 @@ module.exports = {
 	* @desc API Route from 'PUT /user/:id', to update a specific user.
 	*/
 	update : function(req, res){
-		//TODO .. need implementation 
-		res.json("{ status :'updating' }");
+    	var responseObject = {};
+
+	    User.update(req.param('id'), req.params.all(), function userUpdated(err){
+	      if(err){
+
+	        responseObject = {
+	          status : 500,
+	          message : "Error updating account",
+	          err : err
+	        };
+	        return res.json(responseObject);
+	      }
+
+	      responseObject = {
+	        status :  200,
+	        message : "Account update successfully."
+	      };
+
+	      return res.json(responseObject);
+	    });
+
 	},
 
 	/**
@@ -127,8 +171,47 @@ module.exports = {
 	* @desc API Route from 'DELETE /user/:id', to delete a specific user.
 	*/
 	destroy : function(req, res){
-		//TODO .. need implementation 
-		res.json("{ status :'deleting' }");
+		var responseObject = {};
+
+	    User.findOne(req.param('id'), function foundUser(err, user){
+
+	      if (err){
+	        responseObject  = {
+	          status : 500,
+	          message : 'Something wrong happened',
+	          error : err
+	        };
+	        return res.json(responseObject);
+	      }
+
+	      if (!user){
+	        responseObject = {
+	          status : 404,
+	          message : 'User doesn\'t exist.'
+	        }
+	        return res.json(responseObject);
+	      }
+
+
+	      User.destroy(req.param('id'), function userDestroyed(err){
+	        if (err){
+	          responseObject  = {
+	            status : 500,
+	            message : 'Error deleting account',
+	            error : err
+	          };
+	        }
+	        else {
+	          responseObject  = {
+	            status : 200,
+	            message : 'Account deleted successfully.'
+	          };
+	        }
+
+	        return res.json(responseObject);
+	      });
+
+	    });
 	}
 	
 };

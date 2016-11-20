@@ -32,14 +32,19 @@
             <li><strong>name</strong>{string} - the user name</li>
             <li><strong>email</strong>{string} - the user email</li>
             <li><strong>password</strong>{string} - the user password</li>
-            <li><strong>googleAccountId</strong>{string} - the user google account identifier to login using google account</li>
           </ul>
 
-          <h4>Allowed Methods </h4>
+          <h3>Retrieving all users </h3>
 
-          <h5>GET /user</h5>
+<p>Requested route</p>
+
 <pre>
+  GET /user     
+</pre>
 
+<p>Server response</p>
+
+<pre>
 {
   "status": 200,
   "users": [
@@ -77,6 +82,26 @@
   }
  }
 </pre>
+
+<h3> Retrieving a specific user passing your id. </h3>
+
+<p>Requested route</p>
+
+<pre>
+ GET /user/2
+</pre>
+
+<pre>
+ {
+  "name": "samuel",
+  "email": "samuel.santos@mail.com",
+  "id": 2,
+  "createdAt": "2016-11-19T23:35:35.291Z",
+  "updatedAt": "2016-11-19T23:35:35.291Z"
+ }
+</pre>
+
+</pre>
           <h5>UPDATE</h5>
 
           <h5>DELETE</h5>
@@ -90,10 +115,6 @@
   </div>
 
 
-
-
-
-
  <!-- Documentation for activity api -->
   <div class="row">
 
@@ -105,7 +126,7 @@
 
           <p>
             API Documentation to <strong>Activity</strong> entity, an ativity is any taks perform 
-            by the user during the day.
+            by the user during the day.</p>
 
           <h4>Fields</h4>
 
