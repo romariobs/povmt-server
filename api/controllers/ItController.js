@@ -52,7 +52,7 @@ module.exports = {
 	      	var filter = {};
 
 	      	if (activityId) {
-	      		filter = { timeInvestedAt : activityId };
+	      		filter = { investedTimeAt : activityId };
 	      	}
 
 	        It.count(filter).exec(function countCallback(err, totalOfIt) {
@@ -78,7 +78,35 @@ module.exports = {
 	* @desc API Route from 'GET it/:id', to one specific IT.
 	*/
 	findOne : function(req, res){
-		res.json("{status :'Getting by findOne' "+req.param('id')+" }");	
+		
+		var responseObject = {};
+
+		It.findOne( req.param('id'), function foundIt(err, it){
+			
+			if (err){
+				responseObject = {
+					status : 500,
+					message : "error search It with id " + req.param('id'),
+					error : err
+				}
+				return res.json(responseObject);
+			}
+
+			if (!it){
+				responseObject = {
+					status : 404,
+					message : "It doesn\'t exist."
+				}
+				return res.json(responseObject);
+			}
+
+			responseObject = {
+				status : 200,
+				it : it
+			}
+			return res.json(responseObject);
+		});
+
 	},
 	
 	/**
@@ -92,7 +120,8 @@ module.exports = {
 		var responseObject = {};
 
 		var it = {
-			duration : req.param('duration')
+			duration : req.param('duration'),
+			investedTimeAt : ativityId
 		};
 
 	    Activity.findOne(ativityId, function foundActivity(err, activity){	
@@ -133,7 +162,47 @@ module.exports = {
 	*/
 	update : function(req, res){
 
-		res.json("{ status :'updating' }");
+		var responseObject = {};
+
+		It.findOne(req.param('id'), function foundIt(err, it){
+
+			if (err){
+				responseObject  = {
+		          status : 500,
+		          message : 'Error retrieving it',
+		          error : err
+		        };
+		        return res.json(responseObject);
+			}
+
+			if (!it){
+			 	responseObject = {
+		          status : 404,
+		          message : 'It doesn\'t exist.'
+		        }
+		        return res.json(responseObject);
+			}
+
+			It.update(req.param('id'), req.params.all(), function itUpdated(err){
+		     
+		      if(err){
+		        responseObject = {
+		          status : 500,
+		          message : "Error updating it",
+		          err : err
+		        };
+		        return res.json(responseObject);
+		      }
+
+		      responseObject = {
+		        status :  200,
+		        message : "It updated successfully."
+		      };
+
+		      return res.json(responseObject);
+		    });
+
+		});
 	},
 
 	/**
@@ -141,7 +210,48 @@ module.exports = {
 	* @desc API Route from 'DELETE /it/:id', to remove a specific IT.
 	*/
 	destroy : function(req, res){
-		res.json("{ status :'deleting' }");
+		var responseObject = {};
+
+	    It.findOne(req.param('id'), function foundIt(err, it){
+
+	      if (err){
+	        responseObject  = {
+	          status : 500,
+	          message : 'Error searching it ',
+	          error : err
+	        };
+	        return res.json(responseObject);
+	      }
+
+	      if (!it){
+	        responseObject = {
+	          status : 404,
+	          message : 'It doesn\'t exist.'
+	        }
+	        return res.json(responseObject);
+	      }
+
+
+	      It.destroy(req.param('id'), function activityDestroyed(err){
+	        if (err){
+	          responseObject  = {
+	            status : 500,
+	            message : 'Error deleting it',
+	            error : err
+	          };
+	        }
+	        else {
+	          responseObject  = {
+	            status : 200,
+	            message : 'It deleted successfully.'
+	          };
+	        }
+
+	        return res.json(responseObject);
+	      });
+
+	    });
+
 	}
 
 };

@@ -27,7 +27,7 @@ module.exports = {
 
 
     // Add a reference to It
-    investedTimes : {
+    its : {
       collection : 'it',
       via : 'investedTimeAt'
     }

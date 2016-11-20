@@ -86,7 +86,7 @@ module.exports = {
 		
 		var responseObject = {};
 
-		Activity.findOne( req.param('id'), function foundActivity(err, user){
+		Activity.findOne( req.param('id'), function foundActivity(err, activity){
 			
 			if (err){
 				responseObject = {
@@ -97,7 +97,7 @@ module.exports = {
 				return res.json(responseObject);
 			}
 
-			if (!user){
+			if (!activity){
 				responseObject = {
 					status : 404,
 					message : "Activity doesn\'t exist."
@@ -107,7 +107,7 @@ module.exports = {
 
 			responseObject = {
 				status : 200,
-				user : user
+				activity : activity
 			}
 			return res.json(responseObject);
 		});
@@ -225,7 +225,7 @@ module.exports = {
 	      if (err){
 	        responseObject  = {
 	          status : 500,
-	          message : 'Something wrong happened',
+	          message : 'Error searching activity',
 	          error : err
 	        };
 	        return res.json(responseObject);
