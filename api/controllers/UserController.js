@@ -212,6 +212,73 @@ module.exports = {
 	      });
 
 	    });
+	},
+
+	/**
+	* @method UseController#auth
+	* @desc API Route from 'POST /user/auth', to authenticate an user.
+	*/
+	auth : function(req, res, next){
+		
+		var responseObject = {};
+
+	    //Check for email and password in params sent via the request
+	    if (!req.param('email') || !req.param('password')){
+	      responseObject = {
+	        status : 400,
+	        message : "You must enter both a email and password."
+	      };
+
+	      return res.json(responseObject);
+	    }
+
+	    //Try to find the user by there email address
+	    User.findOne( { email : req.param('email') } ).exec(function(err, user){
+
+	      if (err) {
+	        responseObject = {
+	          status : 500,
+	          message : "Error finding account",
+	          error : error
+	        };
+	        return res.json(responseObject);
+	      }
+
+	      //if no user is found...
+	      if (!user){
+	        responseObject = {
+	          status : 404,
+	          message : 'The email address ' + req.param('email') + ' not found.'
+	        };
+	        return res.json(responseObject);
+	      }
+
+	      bcrypt.compare(req.param('password'), user.password, function (err, match) {
+
+	        if(err){
+	          responseObject = {
+	            status : 500,
+	            message : 'Password decryption error.',
+	            error : err
+	          }
+	        }
+
+	        if(match) {
+	          responseObject = {
+	            status : 200,
+	            user : user
+	          };
+
+	        } else {
+	          responseObject = {
+	            status : 401,
+	            message : 'Unauthorized, Invalid email and password combination.'
+	          };
+	        }
+	        return res.json(responseObject);
+	      });
+
+	    });
 	}
 	
 };

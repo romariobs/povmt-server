@@ -36,12 +36,29 @@ module.exports.routes = {
     view : 'homepage'
   },
 
+  '/users' : {
+    view : 'users'
+  },
+
+  '/activities' : {
+    view : 'activities'
+  },
+
+  '/its' : {
+    view : 'its'
+  },
+
   'GET /user': { 
     'UserController' : 'index' 
   },
 
   'GET /user/:id': { 
     'UserController': 'find' 
+  },
+
+
+  'POST /user/auth': { 
+    'UserController' : 'auth' 
   },
 
   'POST /user': { 
