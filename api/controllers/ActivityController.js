@@ -1,3 +1,7 @@
+/*
+* @copyright 2016 - Samuel T. C. Santos
+*/
+
 /**
  * ActivityController
  *

@@ -1,11 +1,18 @@
+/*
+* @copyright 2016 - Samuel T. C. Santos
+*/
+
 /**
  * User.js
  *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @description :: The person who can access the application to register Activities and IT (Invested Time).
+
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
 module.exports = {
+
+  schema : true,
 
   attributes: {
 
@@ -23,7 +30,16 @@ module.exports = {
 
   	password : {
   		type : 'string'
-  	}	
+  	},
+
+    // We don't wan't to send back encrypted password either
+    toJSON: function () {
+      var obj = this.toObject();
+      delete obj.password;
+      return obj;
+    }
+
+	
   }
 };
 

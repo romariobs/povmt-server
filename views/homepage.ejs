@@ -1,5 +1,4 @@
 
-
 <div class="container">
  
   <div class="jumbotron">
@@ -38,10 +37,46 @@
 
           <h4>Allowed Methods </h4>
 
-          <h5>GET</h5>
+          <h5>GET /user</h5>
+<pre>
 
-          <h5>POST</h5>
+{
+  "status": 200,
+  "users": [
+    {
+      "name": "samuel",
+      "email": "samuel.santos@mail.com",
+      "createdAt": "2016-11-19T23:35:35.291Z",
+      "updatedAt": "2016-11-19T23:35:35.291Z",
+      "id": 2
+    }
+  ],
+  "rowCount": 1
+}
 
+</pre>
+
+          <h5>POST /user </h5>
+          <p>Request Data</p>          
+<pre>
+
+ { "name" : "samuel" , "email" : "samuel.santos@mail.com" , "password" : "developer#123"}
+
+</pre>
+          <p>Server Response</p>
+
+<pre>
+  {
+  "status": 201,
+  "user": {
+    "name": "samuel",
+    "email": "samuel.santos@mail.com",
+    "createdAt": "2016-11-19T23:20:26.846Z",
+    "updatedAt": "2016-11-19T23:20:26.846Z",
+    "id": 1
+  }
+ }
+</pre>
           <h5>UPDATE</h5>
 
           <h5>DELETE</h5>

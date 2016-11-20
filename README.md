@@ -15,6 +15,8 @@ We're using mocha and supertest to perform automated tests
 ## Running test cases
 Only type: npm test
 
+## Sails cli commands
+- Generate api (sails generate api EntityName)
 
 ## Development change log
 

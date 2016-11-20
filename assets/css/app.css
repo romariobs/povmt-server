@@ -2,3 +2,9 @@
 .jumbotron {
 	margin-top: 20px !important;
 }
+
+
+pre {
+	background-color: rgb(39, 40, 34);
+	color: #f9f9f9;
+}
