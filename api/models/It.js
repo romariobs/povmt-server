@@ -7,7 +7,19 @@
 
 module.exports = {
 
+  schema: true,
+
   attributes: {
+
+  	duration : { // the time in minutes
+  		type : 'integer',
+  		required: true
+  	},
+
+  	// Add a reference to Activity
+  	investedTimeAt : {
+  		model : 'activity'
+  	}
 
   }
 };

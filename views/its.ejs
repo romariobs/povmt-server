@@ -21,15 +21,107 @@
         <li><strong>id {number} </strong> - the It identifier on database</li>
         <li><strong>duration {number} </strong> - the time in minutes invested performing the task</li>
         <li><strong>createdAt {date} </strong> - the it creation date</li>
-        <li><strong>activityId {number} </strong> - Indicating that this It belongs to activitywner of this activity</li>
+        <li><strong>investedTimeAt {number} </strong> - Indicating the activity id</li>
       </ul>          
 
+<h3>1.0 Retrieving all It (Invested Time)</h3>
 
-      <h4>Allowed Methods </h4>
+<p> Resquest route </p>
+<pre>
+ GET /it
+</pre>
 
-      <h5>GET</h5>
+<p>Server response</p>
 
-      <h5>POST</h5>
+<pre>
+ {
+  "status": 200,
+  "its": [
+    {
+      "duration": 20,
+      "createdAt": "2016-11-20T19:44:29.578Z",
+      "updatedAt": "2016-11-20T19:44:29.578Z",
+      "id": 1
+    },
+    {
+      "duration": 35,
+      "createdAt": "2016-11-20T19:54:06.361Z",
+      "updatedAt": "2016-11-20T19:54:06.361Z",
+      "id": 2
+    },
+    {
+      "duration": 10,
+      "createdAt": "2016-11-20T19:57:28.286Z",
+      "updatedAt": "2016-11-20T19:57:28.286Z",
+      "id": 3
+    }
+  ],
+  "rowCount": 3
+}
+</pre>
+
+
+<h3>2.0 Retrieving all It (Invested Time) for an specific Activity</h3>
+
+<p> Resquest route </p>
+<pre>
+ GET /it?timeInvestedAt=1
+</pre>
+
+<p>Server response</p>
+
+<pre>
+ {
+  "status": 200,
+  "its": [
+    {
+      "duration": 20,
+      "createdAt": "2016-11-20T19:44:29.578Z",
+      "updatedAt": "2016-11-20T19:44:29.578Z",
+      "id": 1
+    },
+    {
+      "duration": 35,
+      "createdAt": "2016-11-20T19:54:06.361Z",
+      "updatedAt": "2016-11-20T19:54:06.361Z",
+      "id": 2
+    },
+    {
+      "duration": 10,
+      "createdAt": "2016-11-20T19:57:28.286Z",
+      "updatedAt": "2016-11-20T19:57:28.286Z",
+      "id": 3
+    }
+  ],
+  "rowCount": 3
+}
+</pre>
+
+
+
+
+<h3>3.0 Create a new It (Invested Time)</h3>
+
+<p> Request route (Warning: <strong>InvestedTimeAt</strong> is requered , represents the Activity Id) </p>
+<pre>
+ POST /it
+
+ data { duration : 20 , investedTimeAt : 1 }
+</pre>
+
+<p>Server response</p>
+
+<pre>
+ {
+  "status": 201,
+  "it": {
+    "duration": 20,
+    "createdAt": "2016-11-20T19:44:29.578Z",
+    "updatedAt": "2016-11-20T19:44:29.578Z",
+    "id": 1
+  }
+ }
+</pre>
 
       <h5>UPDATE</h5>
 

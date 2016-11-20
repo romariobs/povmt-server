@@ -59,7 +59,7 @@ module.exports = {
 	      		filter = { creator : creator };
 	      	}
 
-	        Activity.count(filter).exec(function countCallback(err, totalOfUsers) {
+	        Activity.count(filter).exec(function countCallback(err, totalOfActivities) {
 	          if (err){
 	            response.status = 500;
 	            response.err = err;
@@ -67,7 +67,7 @@ module.exports = {
 	          else{
 	            response.status = 200;
 	            response.activities = results;
-	            response.rowCount = totalOfUsers;
+	            response.rowCount = totalOfActivities;
 	          }
 	          return res.json(response);
 	        });
