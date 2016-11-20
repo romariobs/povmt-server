@@ -7,19 +7,22 @@ Environment we're connectiong with MongoDB database.
 We're using mocha and supertest to perform automated tests 
 
 
-## Creating the user database and grant permissions
+## Creating the user database and grant permissions (MySQL Running Locally)
+
 - CREATE USER 'povmt'@'localhost' IDENTIFIED BY 'povmt';
 - GRANT ALL PRIVILEGES ON * . * TO 'povmt'@'localhost';
 - CREATE DATABASE povmt_server_db;
 
 ## Running test cases
-Only type: npm test
+Only type: npm test (Still not implemented)
 
 ## Sails cli commands
 - Generate api (sails generate api EntityName)
 
 ## Development change log
 
+- 20/11/2016 Integrated database locally (MySQL)
+- 20/11/2016 Complete Basic REST API version 1.0
 - 19/11/2016 Create new Sailjs project and sent to repository
 - 18/11/2016 Started project creating repository
 
