@@ -32,6 +32,8 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+
+  // Routes for web service API documentation pages
   '/' : {
     view : 'homepage'
   },
@@ -48,14 +50,15 @@ module.exports.routes = {
     view : 'its'
   },
 
+
+  // Routes for user rest API 
   'GET /user': { 
-    'UserController' : 'index' 
+    'UserController' : 'find' 
   },
 
   'GET /user/:id': { 
-    'UserController': 'find' 
+    'UserController': 'findOne' 
   },
-
 
   'POST /user/auth': { 
     'UserController' : 'auth' 
@@ -71,6 +74,27 @@ module.exports.routes = {
 
   'DELETE /user/:id': { 
     'UserController' : 'destroy' 
+  },
+
+  // Routes for Activity rest API 
+  'GET /activity': { 
+    'ActivityController' : 'find' 
+  },
+
+  'GET /activity/:id': { 
+    'ActivityController': 'findOne' 
+  },
+
+  'POST /activity': { 
+    'ActivityController' : 'create' 
+  },
+
+  'PUT /activity/:id': { 
+    'ActivityController' : 'update' 
+  },
+
+  'DELETE /uactivity/:id': { 
+    'ActivityController' : 'destroy' 
   }
 
   /***************************************************************************

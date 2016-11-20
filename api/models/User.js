@@ -3,11 +3,9 @@
 */
 
 /**
- * User.js
+ * User.js - A user may have many Activities.
  *
  * @description :: The person who can access the application to register Activities and IT (Invested Time).
-
- * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
 module.exports = {
@@ -32,13 +30,18 @@ module.exports = {
   		type : 'string'
   	},
 
+    //Add a reference to Activity
+    activities: {
+      collection : 'activity',
+      via : 'creator'
+    },
+
     // We don't wan't to send back encrypted password either
     toJSON: function () {
       var obj = this.toObject();
       delete obj.password;
       return obj;
     }
-
 	
   }
 };

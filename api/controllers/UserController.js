@@ -145,24 +145,45 @@ module.exports = {
 	update : function(req, res){
     	var responseObject = {};
 
-	    User.update(req.param('id'), req.params.all(), function userUpdated(err){
-	      if(err){
+    	User.findOne(req.param('id'), function foundUser(err, user){
 
-	        responseObject = {
+ 	       if (err){
+	        responseObject  = {
 	          status : 500,
-	          message : "Error updating account",
-	          err : err
+	          message : 'Something wrong happened',
+	          error : err
 	        };
 	        return res.json(responseObject);
 	      }
 
-	      responseObject = {
-	        status :  200,
-	        message : "Account update successfully."
-	      };
+	      if (!user){
+	        responseObject = {
+	          status : 404,
+	          message : 'User doesn\'t exist.'
+	        }
+	        return res.json(responseObject);
+	      }
 
-	      return res.json(responseObject);
-	    });
+	      User.update(req.param('id'), req.params.all(), function userUpdated(err){
+		      if(err){
+
+		        responseObject = {
+		          status : 500,
+		          message : "Error updating account",
+		          err : err
+		        };
+		        return res.json(responseObject);
+		      }
+
+		      responseObject = {
+		        status :  200,
+		        message : "Account updated successfully."
+		      };
+
+		      return res.json(responseObject);
+		    });
+
+		});
 
 	},
 

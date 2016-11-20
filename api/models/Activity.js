@@ -1,13 +1,25 @@
 /**
- * Activity.js
+ * Activity.js - An activity may only belong to a single User
  *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
+ * @description :: An activity is any task performed by user during the week.
  */
 
 module.exports = {
 
   attributes: {
+
+  	title : {
+  		type : 'string'
+  	},
+
+  	description : {
+  		type : 'string'
+  	},
+
+  	//Add a reference to User
+  	creator : {
+  		model : 'user'
+  	}
 
   }
 };
