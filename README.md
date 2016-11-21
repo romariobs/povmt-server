@@ -21,6 +21,9 @@ Only type: npm test (Still not implemented)
 
 ## Development change log
 
+- 20/11/2016 Configured new mLab account and created remote databases
+- 20/11/2016 Installed sails-mongo driver
+- 20/11/2016 Installed sails-mysql driver
 - 20/11/2016 Integrated database locally (MySQL)
 - 20/11/2016 Complete Basic REST API version 1.0
 - 19/11/2016 Create new Sailjs project and sent to repository
@@ -36,3 +39,10 @@ Only type: npm test (Still not implemented)
 - q (https://www.npmjs.com/package/q)
 - supertest (https://www.npmjs.com/package/supertest)
 - mysql (https://www.npmjs.com/package/mysql)
+
+## Deployment Server Address
+- 
+
+## Remote Databases
+
+-  mongodb://<dbuser>:<dbpassword>@ds159237.mlab.com:59237/povmt_server_db
