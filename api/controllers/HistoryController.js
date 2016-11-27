@@ -120,7 +120,6 @@ module.exports = {
                   groupedHistory : groupedHistory
                 }
               };
-
               return res.json(responseObject);
             });
 
