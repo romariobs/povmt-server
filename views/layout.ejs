@@ -14,6 +14,26 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-fixed-top navbar-inverse hidden">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">PovMT Admin</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#users">Users</a></li>
+            <li><a href="#api">API</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
 
     <ng-view></ng-view>
 
@@ -29,7 +49,10 @@
     <!-- PovMT Web Admin Application -->
     <script src="app/app.js"></script>
     <script src="app/auth/auth.js"></script>
+    <script src="app/users/user.js"></script>
+    <script src="app/activities/activity.js"></script>
+    <script src="app/its/it.js"></script>
+    <script src="app/history/history.js"></script>
     <!-- PovMT Web Admin Application -->
-
   </body>
 </html>

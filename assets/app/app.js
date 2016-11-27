@@ -15,6 +15,26 @@ app.config(function($routeProvider){
       controller : 'Auth',
       templateUrl: 'app/auth/auth.html'
     })
+    .when('/users',
+    {
+      controller : 'User',
+      templateUrl: 'app/users/user.html'
+    })
+    .when('/activities',
+    {
+      controller : 'Activity',
+      templateUrl: 'app/activities/activity.html'
+    })
+    .when('/its',
+    {
+      controller : 'It',
+      templateUrl: 'app/its/it.html'
+    })
+    .when('/history',
+    {
+      controller : 'History',
+      templateUrl: 'app/history/history.html'
+    })
     .otherwise({
       redirectTo: '/'
     });
