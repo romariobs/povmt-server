@@ -21,6 +21,7 @@ Only type: npm test (Still not implemented)
 
 ## Development change log
 
+- 26/11/2016 Started historical endpoint to access old data from user activities and invested time.
 - 20/11/2016 Configured new mLab account and created remote databases
 - 20/11/2016 Installed sails-mongo driver
 - 20/11/2016 Installed sails-mysql driver

@@ -50,6 +50,18 @@ module.exports.routes = {
     view : 'its'
   },
 
+  '/its' : {
+    view : 'its'
+  },
+
+  '/historical' : {
+    view : 'historical'
+  },
+
+  // Routes for user rest API 
+  'GET /history/:startDate/:endDate/:creator': { 
+    'HistoryController' : 'find' 
+  },
 
   // Routes for user rest API 
   'GET /user': { 

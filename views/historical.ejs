@@ -1,0 +1,102 @@
+
+<!-- Documentation for it (invested time) api -->
+<div class="row">
+
+  <div class="col-md-12 col-sm-12 col-xm-12">
+
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4> /history </h4></div>
+      <div class="panel-body">
+
+      <p>
+        API Documentation to <strong>History</strong> this endpoint allow the api developers
+        request data from a period of time limited by two parameters the startDate and the endDate.
+        Each request should specify a user.
+      </p>
+
+      <h4>Fields</h4>
+
+      <p>The <em>History</em> reponse has the fields:</p>
+
+      <ul>
+        <li><strong>creator {number} </strong> - the user (creator) identifier on database</li>
+        <li><strong>startDate {number} </strong> - the time in minutes invested performing the task</li>
+        <li><strong>endDate {date} </strong> - the it creation date</li>
+        <li><strong>history {number} </strong> - A list of historical data retrieve from database</li>
+      </ul>          
+
+      <h4>Url Parameters</h4>
+
+      <p>The server accept the following parameters in the route</p>
+
+      <ul>
+        <li><strong>startDate</strong> - the start date to period </li>
+        <li><strong>endDate</strong> -  the end date fo period (*required endDate >= startDate and dates in english format yyyy-mm-dd)</li>
+        <li><strong>creator</strong> - The user identifier to specify from what user should be retrieved the data</li>
+      </ul>          
+
+
+<h3>1.0 Request historical data from period of time </h3>
+
+<p> Resquest route </p>
+<pre>
+  GET /history?startDate=2016-11-20&endDate=2016-11-27&creator=5
+</pre>
+
+<p>Server response</p>
+
+<pre>
+
+//When there's no data into searched period
+{
+  "status": 200,
+  "creator": "5",
+  "startDate": "2016-11-20",
+  "endDate": "2016-11-27",
+  "history": []
+}
+
+// GET /history
+{
+  "status": 400,
+  "message": "Bed Request, missing startDate!"
+}
+
+//GET /history?startDate=2016-T0-16
+
+{
+  "status": 400,
+  "message": "Bed Request, missing endDate!"
+}
+
+
+//  GET /history?startDate=2016-T0-16&endDate=2016-11-8
+
+{
+  "status": 400,
+  "message": "Bed Request, missing creator!"
+}
+
+// GET /history?startDate=2016-T0-16&endDate=2016-11-8&creator=5
+{
+  "status": 400,
+  "message": "Bed Request, Invalid date received!"
+}
+
+
+// GET /history?startDate=2016-11-16&endDate=2016-11-8&creator=5
+{
+  "status": 400,
+  "message": "Bed Request, The start the should be less than end date!"
+}
+
+</pre>
+
+
+      </div>
+    </div>
+
+  </div>
+  
+</div>
+
