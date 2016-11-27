@@ -15,6 +15,16 @@ app.config(function($routeProvider){
       controller : 'Auth',
       templateUrl: 'app/auth/auth.html'
     })
+    .when('/auth',
+    {
+      controller : 'Auth',
+      templateUrl: 'app/auth/auth.html'
+    })
+    .when('/signup',
+      {
+        controller : 'SignUp',
+        templateUrl: 'app/signup/signup.html'
+      })
     .when('/users',
     {
       controller : 'User',
