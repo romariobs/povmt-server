@@ -23,7 +23,7 @@
         <li><strong>startDate {number} </strong> - the time in minutes invested performing the task</li>
         <li><strong>endDate {date} </strong> - the it creation date</li>
         <li><strong>history {number} </strong> - A list of historical data retrieve from database</li>
-      </ul>          
+      </ul>
 
       <h4>Url Parameters</h4>
 
@@ -33,7 +33,7 @@
         <li><strong>startDate</strong> - the start date to period </li>
         <li><strong>endDate</strong> -  the end date fo period (*required endDate >= startDate and dates in english format yyyy-mm-dd)</li>
         <li><strong>creator</strong> - The user identifier to specify from what user should be retrieved the data</li>
-      </ul>          
+      </ul>
 
 
 <h3>1.0 Request historical data from period of time </h3>
@@ -46,6 +46,118 @@
 <p>Server response</p>
 
 <pre>
+//  GET /history?startDate=2016-11-24&endDate=2016-11-26&creator=1
+{
+  "status": 200,
+  "creator": "1",
+  "startDate": "2016-11-24",
+  "endDate": "2016-11-26",
+  "history": {
+    "its": [
+      {
+        "investedTimeAt": 1,
+        "duration": 10,
+        "id": 6,
+        "createdAt": "2016-11-25T02:15:39.000Z",
+        "updatedAt": "2016-11-25T02:15:39.000Z"
+      },
+      {
+        "investedTimeAt": 1,
+        "duration": 10,
+        "id": 7,
+        "createdAt": "2016-11-24T02:15:39.000Z",
+        "updatedAt": "2016-11-24T02:15:39.000Z"
+      },
+      {
+        "investedTimeAt": 2,
+        "duration": 20,
+        "id": 10,
+        "createdAt": "2016-11-25T02:15:39.000Z",
+        "updatedAt": "2016-11-25T02:15:39.000Z"
+      },
+      {
+        "investedTimeAt": 2,
+        "duration": 20,
+        "id": 11,
+        "createdAt": "2016-11-24T02:15:39.000Z",
+        "updatedAt": "2016-11-24T02:15:39.000Z"
+      }
+    ],
+    "activities": [
+      {
+        "creator": 1,
+        "title": "Task A",
+        "description": "My Task A",
+        "id": 1,
+        "createdAt": "2016-11-27T01:17:07.000Z",
+        "updatedAt": "2016-11-27T01:17:07.000Z"
+      },
+      {
+        "creator": 1,
+        "title": "Task B",
+        "description": "My Task B",
+        "id": 2,
+        "createdAt": "2016-11-27T01:17:38.000Z",
+        "updatedAt": "2016-11-27T01:17:38.000Z"
+      }
+    ],
+    "groupedHistory": [
+      {
+        "activity": {
+          "creator": 1,
+          "title": "Task A",
+          "description": "My Task A",
+          "id": 1,
+          "createdAt": "2016-11-27T01:17:07.000Z",
+          "updatedAt": "2016-11-27T01:17:07.000Z"
+        },
+        "its": [
+          {
+            "investedTimeAt": 1,
+            "duration": 10,
+            "id": 6,
+            "createdAt": "2016-11-25T02:15:39.000Z",
+            "updatedAt": "2016-11-25T02:15:39.000Z"
+          },
+          {
+            "investedTimeAt": 1,
+            "duration": 10,
+            "id": 7,
+            "createdAt": "2016-11-24T02:15:39.000Z",
+            "updatedAt": "2016-11-24T02:15:39.000Z"
+          }
+        ]
+      },
+      {
+        "activity": {
+          "creator": 1,
+          "title": "Task B",
+          "description": "My Task B",
+          "id": 2,
+          "createdAt": "2016-11-27T01:17:38.000Z",
+          "updatedAt": "2016-11-27T01:17:38.000Z"
+        },
+        "its": [
+          {
+            "investedTimeAt": 2,
+            "duration": 20,
+            "id": 10,
+            "createdAt": "2016-11-25T02:15:39.000Z",
+            "updatedAt": "2016-11-25T02:15:39.000Z"
+          },
+          {
+            "investedTimeAt": 2,
+            "duration": 20,
+            "id": 11,
+            "createdAt": "2016-11-24T02:15:39.000Z",
+            "updatedAt": "2016-11-24T02:15:39.000Z"
+          }
+        ]
+      }
+    ]
+  }
+}
+
 
 //When there's no data into searched period
 {
@@ -97,6 +209,6 @@
     </div>
 
   </div>
-  
+
 </div>
 

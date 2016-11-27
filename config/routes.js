@@ -105,7 +105,7 @@ module.exports.routes = {
     'ActivityController' : 'update' 
   },
 
-  'DELETE /uactivity/:id': { 
+  'DELETE /activity/:id': { 
     'ActivityController' : 'destroy' 
   }
 
