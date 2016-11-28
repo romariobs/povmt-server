@@ -1,10 +1,10 @@
 # povmt-server
 
 Web server to provide storage and Restful API for client applications, locally
-on development environment we're using MySQL database and in the production 
+on development environment we're using MySQL database and in the production
 Environment we're connectiong with MongoDB database.
 
-We're using mocha and supertest to perform automated tests 
+We're using mocha and supertest to perform automated tests
 
 
 ## Creating the user database and grant permissions (MySQL Running Locally)
@@ -21,6 +21,7 @@ Only type: npm test (Still not implemented)
 
 ## Development change log
 
+- 27/11/2016 Started Web Admin application
 - 26/11/2016 Started historical endpoint to access old data from user activities and invested time.
 - 20/11/2016 Configured new mLab account and created remote databases
 - 20/11/2016 Installed sails-mongo driver
@@ -30,9 +31,13 @@ Only type: npm test (Still not implemented)
 - 19/11/2016 Create new Sailjs project and sent to repository
 - 18/11/2016 Started project creating repository
 
-## Installed Libraries
+## Installed Libraries Front-end
 
-- sailsjs v0.12 (http://sailsjs.org/get-started) 
+- 27/11/2016 alertify.js (https://alertifyjs.org/#getting-started)
+
+## Installed Libraries Backend
+
+- sailsjs v0.12 (http://sailsjs.org/get-started)
 - bcrypt (https://www.npmjs.com/package/bcrypt)
 - sails-mongo (https://www.npmjs.com/package/sails-mongo)
 - mocha (http://mochajs.org/)
@@ -42,7 +47,7 @@ Only type: npm test (Still not implemented)
 - mysql (https://www.npmjs.com/package/mysql)
 
 ## Deployment Server Address
-- 
+-
 
 ## Remote Databases
 

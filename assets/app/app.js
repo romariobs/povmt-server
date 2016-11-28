@@ -7,7 +7,6 @@
 
 var app = angular.module('PovMTWebAdmin', ['ngRoute'])
 
-
 app.config(function($routeProvider){
 
   $routeProvider.when('/',
