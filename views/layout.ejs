@@ -1,63 +1,70 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="PovMTWebAdmin">
   <head>
-    <title><%=typeof title == 'undefined' ? 'PovMT Web Admin' : title%></title>
+    <title><%=typeof title == 'undefined' ? 'PovMT Admin' : title%></title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!--STYLES-->
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/css/app.css">
     <!--STYLES END-->
-    <link rel="stylesheet" href="/resources/css/alertify.css" />
-    <link rel="stylesheet" href="/app/auth/auth.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/css/alertify.css" />
+    <link rel="stylesheet" type="text/css" href="/app/auth/auth.css" />
+    <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="resources/css/material.min.css" />
+    <link rel="stylesheet" type="text/css" href="resources/css/dataTables.material.min.css" />
+    <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.min.css" />  
   </head>
 
   <body>
-    <nav class="navbar navbar-fixed-top navbar-inverse hidden">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">PovMT Admin</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#users">Users</a></li>
-            <li><a href="#api">API</a></li>
-          </ul>
-        </div><!-- /.nav-collapse -->
-      </div><!-- /.container -->
-    </nav><!-- /.navbar -->
+
+   <nav class="navbar navbar-static-top navbar-dark bg-inverse">
+      <a class="navbar-brand" href="#">PovMT Admin</a>
+      <ul class="nav navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#/users">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#/api">API</a>
+        </li>
+      </ul>
+    </nav>
 
     <ng-view></ng-view>
 
     <!--SCRIPTS-->
     <script src="/resources/js/dependencies/sails.io.js"></script>
-    <script src="/resources/js/dependencies/jquery-2.1.4.min.js"></script>
+    <script src="/resources/js/jquery.dataTables.min.js"></script>
     <script src="/resources/js/angular.min.js"></script>
     <script src="/resources/js/angular-route.js"></script>
     <script src="/resources/js/alertify.js"></script>
     <script src="/resources/js/bootstrap.min.js"></script>
-    <script src="/resources/js/ngAlertify.js"></script>
+    <script src="/resources/js/dataTables.material.min.js"></script>
+    <script src="/resources/js/jquery.min.js"></script>
+    <script src="/resources/js/tether.min.js"></script>
     <!--SCRIPTS END-->
 
+    <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="resources/js/dataTables.material.min.js"></script>
+
+    <script type="text/javascript" src="resources/js/tether.min.js"></script>
+    <script type="text/javascript" src="resources/js/bootstrap.min.js" ></script>
+
     <!-- PovMT Web Admin Application -->
-    <script src="app/app.js"></script>
-    <script src="app/config.js"></script>
-    <script src="app/services/rest.js"></script>
-    <script src="app/signup/signup.js"></script>
-    <script src="app/auth/auth.js"></script>
-    <script src="app/users/user.js"></script>
-    <script src="app/activities/activity.js"></script>
-    <script src="app/its/it.js"></script>
-    <script src="app/history/history.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/config.js"></script>
+    <script type="text/javascript" src="app/services/rest.js"></script>
+    <script type="text/javascript" src="app/signup/signup.js"></script>
+    <script type="text/javascript" src="app/auth/auth.js"></script>
+    <script type="text/javascript" src="app/users/user.js"></script>
+    <script type="text/javascript" src="app/activities/activity.js"></script>
+    <script type="text/javascript" src="app/its/it.js"></script>
+    <script type="text/javascript" src="app/history/history.js"></script>
     <!-- PovMT Web Admin Application -->
   </body>
 </html>

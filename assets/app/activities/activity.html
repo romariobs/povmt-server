@@ -1,10 +1,82 @@
 
 <div class="container">
 
+
   <div class="page-header">
-    <h3>Activity</h3>
+    <div class="row">
+    	<div class="col-md-10 col-sm-10 col-xm-10">
+    		<h3>Activities</h3>	
+    	</div>
+    	<div class="col-md-2 col-sm-2 col-xm-2">
+			<button id="btnAddActivity" ng-click="openActivityModal()"  type="button" class="btn btn-secondary">
+			<i class="fa fa-tasks fa-lg"></i> New
+			</button>
+    	</div>
+    </div>
   </div>
 
-  <p>Managing activities</p>
+
+  <table id="activitiesTable" class="table">
+	  <thead>
+	    <tr>
+	      <th># ID</th>
+	      <th>Title </th>
+	      <th>Description</th>
+	      <th>CreatedAt</th>
+	      <th>UpdatedAt</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr ng-click="openIt(activity.id)" ng-repeat="activity in activities">
+	      <th scope="row">{{ activity.id }}</th>
+	      <td>{{ activity.title }}</td>
+	      <td>{{ activity.description }}</td>
+	      <td>{{ activity.createdAt }}</td>
+	      <td>{{ activity.updatedAt }}</td>
+	    </tr>
+	  </tbody>
+	</table>
 
 </div>
+
+
+
+<div id="activityModal" class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title">New Activity</h5>
+      </div>
+      <div class="modal-body">
+
+		<form>
+			<div class="form-group">
+				<label for="inputTitle" class="sr-only">Title</label>
+				<input ng-model="title" type="text" id="inputTitle" class="form-control" placeholder="Title" required autofocus>				
+			</div>
+
+			<div class="form-group">
+				<label for="inputDescription" class="sr-only">Description</label>
+				<input ng-model="description" type="text" id="inputDescription" class="form-control" placeholder="Description" required>				
+			</div>
+
+			<div class="form-group">
+				<label for="inputCreatedAt" class="sr-only">Created At</label>
+				<input ng-model="createdAt" type="date" class="form-control" placeholder="Created At" />
+			</div>
+
+		</form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" ng-click="createActivity()" class="btn btn-primary">Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+

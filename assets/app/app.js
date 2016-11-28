@@ -29,12 +29,12 @@ app.config(function($routeProvider){
       controller : 'User',
       templateUrl: 'app/users/user.html'
     })
-    .when('/activities',
+    .when('/activities/:userId',
     {
       controller : 'Activity',
       templateUrl: 'app/activities/activity.html'
     })
-    .when('/its',
+    .when('/its/:activityId',
     {
       controller : 'It',
       templateUrl: 'app/its/it.html'

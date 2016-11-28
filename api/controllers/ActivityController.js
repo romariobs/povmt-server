@@ -121,12 +121,17 @@ module.exports = {
 	create : function(req, res){
 
 		var creator = req.param('creator');
+		var createdAt = req.param('createdAt');
 
 		var activity = {
 			title : req.param('title'),
 			description : req.param('description'),
 			creator : creator
 		};
+
+		if (createdAt){
+			activity["createdAt"] = createdAt;
+		}
 
 		var responseObject = {};
 
@@ -153,7 +158,7 @@ module.exports = {
 
 	    		responseObject = {
 	    			status : 201,
-	    			ativity : newActivity
+	    			activity : newActivity
 	    		}
 
 	    		return res.json(responseObject);

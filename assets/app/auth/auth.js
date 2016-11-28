@@ -8,6 +8,9 @@ app.controller("Auth", ['$scope', '$timeout', 'Rest',
   $scope.email = "";
   $scope.password = "";
 
+  $('.navbar').addClass('hidden');
+  $('body').css('background-color', '#eee');
+
   $scope.login = function(){
 
     var data = { email : $scope.email, password : $scope.password };
@@ -20,6 +23,8 @@ app.controller("Auth", ['$scope', '$timeout', 'Rest',
         alertify.success("Welcome, " + $scope.email.split('@')[0] );
 
         $timeout(function(){
+          $('.navbar').removeClass('hidden');
+          $('body').css('background-color', '#fff');
           window.location.href = '#/users'
         },500, false);
 
@@ -32,5 +37,5 @@ app.controller("Auth", ['$scope', '$timeout', 'Rest',
 
   };
 
-  console.log('auth works');
+
 }]);

@@ -14,7 +14,7 @@ app.controller("SignUp", ['$scope', 'Rest','$timeout',
 
     Rest.post('/user', data).then(function(response){
       console.log(response);
-      if (response.status == HTTP_OK){
+      if (response.status == HTTP_CREATED ){
 
         alertify.success("New user created : " + $scope.name );
 
