@@ -71,6 +71,10 @@ app.controller("Activity", ['$scope', '$routeParams', 'Rest', '$timeout',
 
 	getActivities();
 
+	$scope.getTime = function(timestamp){
+		return moment(timestamp).fromNow();
+	}
+
     console.log('activities from user ', userId );
 
 }]);

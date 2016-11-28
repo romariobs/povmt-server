@@ -31,8 +31,8 @@
 	      <th scope="row">{{ activity.id }}</th>
 	      <td>{{ activity.title }}</td>
 	      <td>{{ activity.description }}</td>
-	      <td>{{ activity.createdAt }}</td>
-	      <td>{{ activity.updatedAt }}</td>
+	      <td>{{ getTime(activity.createdAt) }}</td>
+	      <td>{{ getTime(activity.updatedAt) }}</td>
 	    </tr>
 	  </tbody>
 	</table>

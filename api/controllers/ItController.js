@@ -116,6 +116,7 @@ module.exports = {
 	create : function(req, res){
 		
 		var ativityId = req.param('investedTimeAt');
+		var createdAt = req.param('createdAt');
 
 		var responseObject = {};
 
@@ -123,6 +124,10 @@ module.exports = {
 			duration : req.param('duration'),
 			investedTimeAt : ativityId
 		};
+
+		if (createdAt){
+			it["createdAt"] = createdAt;
+		}
 
 	    Activity.findOne(ativityId, function foundActivity(err, activity){	
 
