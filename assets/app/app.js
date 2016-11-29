@@ -44,6 +44,16 @@ app.config(function($routeProvider){
       controller : 'History',
       templateUrl: 'app/history/history.html'
     })
+    .when('/dashboard',
+    {
+      controller : 'Dashboard',
+      templateUrl: 'app/dashboard/dashboard.html'
+    })
+    .when('/docs',
+    {
+      controller : 'Docs',
+      templateUrl: 'app/docs/index.html'
+    })
     .otherwise({
       redirectTo: '/'
     });

@@ -24,17 +24,14 @@
 
   <body>
 
-   <nav ng-if=" window.location.hash !== '#/' " class="navbar navbar-static-top navbar-dark bg-inverse">
+   <nav class="navbar navbar-static-top navbar-dark bg-inverse">
       <a class="navbar-brand" href="#">PovMT Admin</a>
       <ul class="nav navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="#/dashboard">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#/users">Users</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#/api">API</a>
+          <a class="nav-link" href="#/docs">API</a>
         </li>
       </ul>
     </nav>
@@ -78,6 +75,8 @@
     <script type="text/javascript" src="app/activities/activity.js"></script>
     <script type="text/javascript" src="app/its/it.js"></script>
     <script type="text/javascript" src="app/history/history.js"></script>
+    <script type="text/javascript" src="app/docs/docs.js"></script>
+    <script type="text/javascript" src="app/dashboard/dashboard.js"></script>
     <!-- PovMT Web Admin Application -->
   </body>
 </html>
