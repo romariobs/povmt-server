@@ -47,7 +47,7 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
 	    Rest.post('/user', data).then(function(response){
 	      console.log(response);
 	      if (response.status == HTTP_CREATED ){
-	        alertify.success("New user created : " + $scope.name );
+	        alertify.success("User created " + $scope.name );
 	        $('#userModal').modal('hide');
           addRow(response.user);
 	      }
@@ -82,7 +82,6 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
       row.push(users[i].email);
       dataset.push(row);
     }
-    console.log(dataset);
     return dataset;
   };
 
@@ -90,10 +89,6 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
     var columns = [ {title : "ID"},  {title : "Username" }, {title : "Email"} ];
     return columns;
   };
-
-	$scope.openActivity = function(userId){
-		window.location.href = "#/activities/" + userId;
-	};
 
 	getUsers();
 
