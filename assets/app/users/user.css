@@ -1,4 +1,8 @@
 
 #btnAddUser {
-	margin-top: 30px !important;	
+	margin-top: 5px !important;
+}
+
+#usersTable {
+  margin-top: 20px !important;
 }

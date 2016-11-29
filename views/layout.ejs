@@ -8,25 +8,23 @@
 
     <!--STYLES-->
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/resources/css/app.css">
     <!--STYLES END-->
     <link rel="stylesheet" type="text/css" href="/resources/css/alertify.css" />
     <link rel="stylesheet" type="text/css" href="/app/auth/auth.css" />
     <link rel="stylesheet" type="text/css" href="/app/users/user.css" />
     <link rel="stylesheet" type="text/css" href="/app/activities/activity.css" />
     <link rel="stylesheet" type="text/css" href="/app/its/it.css" />
-    
-    <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="resources/css/material.min.css" />
-    <link rel="stylesheet" type="text/css" href="resources/css/dataTables.material.min.css" />
-    <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.min.css" />  
 
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.2/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="resources/css/dataTables.material.min.css" />
+    <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
   </head>
 
   <body>
 
-   <nav class="navbar navbar-static-top navbar-dark bg-inverse">
+   <nav ng-if=" window.location.hash !== '#/' " class="navbar navbar-static-top navbar-dark bg-inverse">
       <a class="navbar-brand" href="#">PovMT Admin</a>
       <ul class="nav navbar-nav">
         <li class="nav-item active">
@@ -40,7 +38,6 @@
         </li>
       </ul>
     </nav>
-
 
     <ng-view></ng-view>
 

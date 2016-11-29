@@ -14,25 +14,27 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
 		Rest.get('/user').then(function(response){
 
 	      if (response.status == HTTP_OK ){
-	      	console.log(response)
+	      	console.log(response);
 
-	      	$timeout(function(){
-				$scope.users = response.users;
-        var dataset = buildDataSet($scope.users);
+          $timeout(function(){
+            $scope.users = response.users;
+            var dataset = buildDataSet($scope.users);
 
-        var options = {
-          data : dataset,
-          columns: getColumns()
-        };
+            var options = {
+              data : dataset,
+              columns: getColumns(),
+              iDisplayLength: 10,
+              aLengthMenu : [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+            };
 
-				$('#usersTable').DataTable(options);
-	      	}, 0, true);
+            $('#usersTable').DataTable(options);
+	      	  }, 0, true);
 	      }
 	      else {
 	        alertify.error(response.message);
 	      }
 	    });
-	}
+	};
 
 	$scope.openUserModal = function(){
 		$('#userModal').modal('show');
@@ -47,24 +49,27 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
 	      if (response.status == HTTP_CREATED ){
 	        alertify.success("New user created : " + $scope.name );
 	        $('#userModal').modal('hide');
-
-          $timeout(function(){
-            $scope.users.push(response.user);
-            var dataset = buildDataSet($scope.users);
-
-            $('#usersTable').DataTable({
-              data : dataset,
-              columns : getColumns
-            });
-          }, 0, true);
+          addRow(response.user);
 	      }
 	      else {
 	        alertify.error(response.message);
 	       	$('#userModal').modal('hide');
 	      }
+        $scope.name = "";
+        $scope.email = "";
+        $scope.password = "";
 	    });
 
 	};
+
+  var addRow = function(user){
+      var data = [
+        user.id,
+        '<a href="#/activities/'+user.id+'">' +user.name+'</a>',
+        user.email
+      ];
+      $("#usersTable").dataTable().fnAddData(data);
+  };
 
   var buildDataSet = function(users){
 
@@ -73,7 +78,7 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
     for (var i=0; i < users.length; i++){
       var row = [];
       row.push(users[i].id);
-      row.push(users[i].name);
+      row.push('<a href="#/activities/'+users[i].id+'">' +users[i].name+'</a>');
       row.push(users[i].email);
       dataset.push(row);
     }
@@ -82,11 +87,7 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
   };
 
   var getColumns = function(){
-    var columns = [
-      {title : "ID"},
-      {title : "Username" },
-      {title : "Email"}
-    ];
+    var columns = [ {title : "ID"},  {title : "Username" }, {title : "Email"} ];
     return columns;
   };
 

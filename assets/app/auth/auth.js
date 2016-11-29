@@ -9,7 +9,7 @@ app.controller("Auth", ['$scope', '$timeout', 'Rest',
   $scope.password = "";
 
   $('.navbar').addClass('hidden');
-  $('body').css('background-color', '#eee');
+  //$('body').css('background-color', '#eee');
 
   $scope.login = function(){
 
@@ -23,7 +23,7 @@ app.controller("Auth", ['$scope', '$timeout', 'Rest',
         alertify.success("Welcome, " + $scope.email.split('@')[0] );
 
         $timeout(function(){
-          $('.navbar').removeClass('hidden');
+          //$('.navbar').removeClass('hidden');
           $('body').css('background-color', '#fff');
           window.location.href = '#/users'
         },500, false);
