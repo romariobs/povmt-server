@@ -12,36 +12,40 @@ app.controller("It", ['$scope' , '$routeParams', '$timeout', 'Rest',
 
 	$scope.its = [];
 
+  var getIts = function(){
 
-    var getIts = function(){
+  Rest.get('/it?investedTimeAt=' + activityId).then(function(response){
 
-		Rest.get('/it?investedTimeAt=' + activityId).then(function(response){
-	     
-	      if (response.status == HTTP_OK ){
-	      	console.log(response)
-	      	
-	      	$timeout(function(){
-				$scope.its = response.its;
-				$('#itsTable').DataTable();
-	      	}, 0, true);
-	      }
-	      else {
-	        alertify.error(response.message);
-	      }
-	    });
-    }
+      if (response.status == HTTP_OK ){
 
+        $timeout(function(){
+          var dataset = buildDataSet(response.its);
 
+          var options = {
+            data : dataset,
+            columns: getColumns(),
+            iDisplayLength: 10,
+            aLengthMenu : [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+          };
+
+          $('#itsTable').DataTable(options);
+        }, 0, true);
+      }
+      else {
+        alertify.error(response.message);
+      }
+    });
+  };
 
 	$scope.openItModal = function(){
 		$('#itModal').modal('show');
-	}
+	};
 
 	$scope.createIt = function(){
 
-		var data = { 
-			duration: $scope.duration, 
-			createdAt : $scope.createdAt, 
+		var data = {
+			duration: $scope.duration,
+			createdAt : $scope.createdAt,
 			investedTimeAt : activityId
 		};
 
@@ -51,22 +55,54 @@ app.controller("It", ['$scope' , '$routeParams', '$timeout', 'Rest',
 	        alertify.success("Invested Time created :" + $scope.duration );
 	        $('#itModal').modal('hide');
 
-			$timeout(function(){
-				$scope.its.push(response.it);
-				$('#itsTable').DataTable();
-			}, 0, true); 
+          $timeout(function(){
+            addRow(response.it);
+          }, 0, true);
 	      }
 	      else {
 	        alertify.error(response.message);
-	       	$('#itModal').modal('hide'); 
+	       	$('#itModal').modal('hide');
 	      }
 	    });
 
-	}
+	};
 
-	$scope.getTime = function(timestamp){
-		return moment(timestamp).fromNow();
-	}
+  var getTime = function(timestamp){
+    return moment(timestamp).fromNow();
+  };
+
+  var addRow = function(it){
+    var data = [
+      it.id,
+      it.duration,
+      getTime(it.createdAt),
+      getTime(it.updatedAt)
+    ];
+    $("#itsTable").dataTable().fnAddData(data);
+  };
+
+  var buildDataSet = function(its){
+    var dataset = [];
+    for (var i=0; i < its.length; i++){
+      var row = [];
+      row.push(its[i].id);
+      row.push(its[i].duration);
+      row.push(getTime(its[i].createdAt));
+      row.push(getTime(its[i].updatedAt));
+      dataset.push(row);
+    }
+    return dataset;
+  };
+
+  var getColumns = function(){
+    var columns = [
+      {title : "ID"},
+      {title : "Duration" },
+      {title : "Created At"},
+      {title : "Updated At"}
+    ];
+    return columns;
+  };
 
 	getIts();
 

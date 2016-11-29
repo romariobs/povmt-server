@@ -4,7 +4,6 @@
 
 app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, Rest){
 
-	$scope.users = [];
 	$scope.name = "";
 	$scope.email = "";
 	$scope.password = "";
@@ -14,11 +13,9 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
 		Rest.get('/user').then(function(response){
 
 	      if (response.status == HTTP_OK ){
-	      	console.log(response);
-
+	      	
           $timeout(function(){
-            $scope.users = response.users;
-            var dataset = buildDataSet($scope.users);
+            var dataset = buildDataSet(response.users);
 
             var options = {
               data : dataset,
