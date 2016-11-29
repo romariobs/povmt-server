@@ -1,4 +1,21 @@
 
+.full-background {
+  margin-top: 50px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: repeat;
+  background-image: url(../../resources/images/cover.jpg);
+}
+
+.white-text {
+  color : #fff;
+}
+
 .form-signin {
   max-width: 330px;
   padding: 15px;

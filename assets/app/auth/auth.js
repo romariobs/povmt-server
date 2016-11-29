@@ -8,24 +8,23 @@ app.controller("Auth", ['$scope', '$timeout', 'Rest',
   $scope.email = "";
   $scope.password = "";
 
-  $('.navbar').addClass('hidden');
-  //$('body').css('background-color', '#eee');
+  $('.navbar-nav').hide();
+  $('body').css('background-color', '#2e2e30');
 
   $scope.login = function(){
 
     var data = { email : $scope.email, password : $scope.password };
 
     Rest.post('/user/auth', data).then(function(response){
-      console.log(response);
 
       if (response.status == HTTP_OK){
 
         alertify.success("Welcome, " + $scope.email.split('@')[0] );
 
         $timeout(function(){
-          //$('.navbar').removeClass('hidden');
+          $('.navbar-nav').show();
           $('body').css('background-color', '#fff');
-          window.location.href = '#/users'
+          window.location.href = '#/dashboard'
         },500, false);
 
       }

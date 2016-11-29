@@ -31,82 +31,56 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-
-
-  // Routes for web service API documentation pages
-  '/' : {
-    view : 'homepage'
+  
+  // Routes for user rest API
+  'GET /history/:startDate/:endDate/:creator': {
+    'HistoryController' : 'find'
   },
 
-  '/users' : {
-    view : 'users'
+  // Routes for user rest API
+  'GET /user': {
+    'UserController' : 'find'
   },
 
-  '/activities' : {
-    view : 'activities'
+  'GET /user/:id': {
+    'UserController': 'findOne'
   },
 
-  '/its' : {
-    view : 'its'
+  'POST /user/auth': {
+    'UserController' : 'auth'
   },
 
-  '/its' : {
-    view : 'its'
+  'POST /user': {
+    'UserController' : 'create'
   },
 
-  '/historical' : {
-    view : 'historical'
+  'PUT /user/:id': {
+    'UserController' : 'update'
   },
 
-  // Routes for user rest API 
-  'GET /history/:startDate/:endDate/:creator': { 
-    'HistoryController' : 'find' 
+  'DELETE /user/:id': {
+    'UserController' : 'destroy'
   },
 
-  // Routes for user rest API 
-  'GET /user': { 
-    'UserController' : 'find' 
+  // Routes for Activity rest API
+  'GET /activity': {
+    'ActivityController' : 'find'
   },
 
-  'GET /user/:id': { 
-    'UserController': 'findOne' 
+  'GET /activity/:id': {
+    'ActivityController': 'findOne'
   },
 
-  'POST /user/auth': { 
-    'UserController' : 'auth' 
+  'POST /activity': {
+    'ActivityController' : 'create'
   },
 
-  'POST /user': { 
-    'UserController' : 'create' 
+  'PUT /activity/:id': {
+    'ActivityController' : 'update'
   },
 
-  'PUT /user/:id': { 
-    'UserController' : 'update' 
-  },
-
-  'DELETE /user/:id': { 
-    'UserController' : 'destroy' 
-  },
-
-  // Routes for Activity rest API 
-  'GET /activity': { 
-    'ActivityController' : 'find' 
-  },
-
-  'GET /activity/:id': { 
-    'ActivityController': 'findOne' 
-  },
-
-  'POST /activity': { 
-    'ActivityController' : 'create' 
-  },
-
-  'PUT /activity/:id': { 
-    'ActivityController' : 'update' 
-  },
-
-  'DELETE /activity/:id': { 
-    'ActivityController' : 'destroy' 
+  'DELETE /activity/:id': {
+    'ActivityController' : 'destroy'
   }
 
   /***************************************************************************

@@ -1,0 +1,218 @@
+<div class="card card-block">
+
+  <!-- Documentation for it (invested time) api -->
+  <div class="row">
+
+    <div class="col-md-12 col-sm-12 col-xm-12">
+
+      <div class="panel panel-default">
+        <div class="panel-heading"><h4> /it </h4></div>
+        <div class="panel-body">
+
+          <p>
+            API Documentation to <strong>It (<em>invested time</em>)</strong> entity, an <strong>it</strong>  is
+            period of time allocated by user performing any registered activity.
+          </p>
+
+          <h4>Fields</h4>
+
+          <p>The <em>IT</em> entity has the fields:</p>
+
+          <ul>
+            <li><strong>id {number} </strong> - the It identifier on database</li>
+            <li><strong>duration {number} </strong> - the time in minutes invested performing the task</li>
+            <li><strong>createdAt {date} </strong> - the it creation date</li>
+            <li><strong>investedTimeAt {number} </strong> - Indicating the activity id</li>
+          </ul>
+
+
+          <h4>Url Parameters</h4>
+
+          <p>The server accept the following parameters in the route</p>
+
+          <ul>
+            <li><strong>limit</strong> - The maximum number of results to retrieve </li>
+            <li><strong>skip </strong> - The total of resource to skip into database </li>
+            <li><strong>sort</strong> - The sort type to apply in the resources (ASC or DESC)</li>
+            <li><strong>investedTimeAt </strong> - Used to pass the Activity Id to filter It</li>
+          </ul>
+
+
+          <h3>1.0 Retrieving all It (Invested Time)</h3>
+
+          <p> Resquest route </p>
+<pre>
+ GET /it
+</pre>
+
+          <p>Server response</p>
+
+<pre>
+ {
+  "status": 200,
+  "its": [
+    {
+      "duration": 20,
+      "investedTimeAt" : 1,
+      "createdAt": "2016-11-20T19:44:29.578Z",
+      "updatedAt": "2016-11-20T19:44:29.578Z",
+      "id": 1
+    },
+    {
+      "duration": 35,
+      "investedTimeAt" : 1,
+      "createdAt": "2016-11-20T19:54:06.361Z",
+      "updatedAt": "2016-11-20T19:54:06.361Z",
+      "id": 2
+    },
+    {
+      "duration": 10,
+      "investedTimeAt" : 1,
+      "createdAt": "2016-11-20T19:57:28.286Z",
+      "updatedAt": "2016-11-20T19:57:28.286Z",
+      "id": 3
+    }
+  ],
+  "rowCount": 3
+}
+</pre>
+
+
+          <h3>2.0 Retrieving all It (Invested Time) for specific Activity</h3>
+
+          <p> Resquest route </p>
+<pre>
+ GET /it?timeInvestedAt=1
+</pre>
+
+          <p>Server response</p>
+
+<pre>
+ {
+  "status": 200,
+  "its": [
+    {
+      "duration": 20,
+      "investedTimeAt" : 1,
+      "createdAt": "2016-11-20T19:44:29.578Z",
+      "updatedAt": "2016-11-20T19:44:29.578Z",
+      "id": 1
+    },
+    {
+      "duration": 35,
+      "investedTimeAt" : 1,
+      "createdAt": "2016-11-20T19:54:06.361Z",
+      "updatedAt": "2016-11-20T19:54:06.361Z",
+      "id": 2
+    },
+    {
+      "duration": 10,
+      "investedTimeAt" : 1,
+      "createdAt": "2016-11-20T19:57:28.286Z",
+      "updatedAt": "2016-11-20T19:57:28.286Z",
+      "id": 3
+    }
+  ],
+  "rowCount": 3
+}
+</pre>
+
+
+          <h3>3.0 Retrieving a specific It (Invested Time) by your Id </h3>
+
+          <p> Resquest route </p>
+<pre>
+ GET /it/1
+</pre>
+
+          <p>Server response</p>
+
+<pre>
+ {
+  "status": 200,
+  "it": {
+    "investedTimeAt": 1,
+    "duration": 20,
+    "createdAt": "2016-11-20T20:54:43.076Z",
+    "updatedAt": "2016-11-20T20:54:43.076Z",
+    "id": 1
+  }
+}
+</pre>
+
+
+
+
+          <h3>4.0 Create a new It (Invested Time)</h3>
+
+          <p> Request route (Warning: <strong>InvestedTimeAt</strong> is requered , represents the Activity Id) </p>
+<pre>
+ POST /it
+
+ data { duration : 20 , investedTimeAt : 1 }
+</pre>
+
+          <p>Server response</p>
+
+<pre>
+ {
+  "status": 200,
+  "its": [
+    {
+      "investedTimeAt": 2,
+      "duration": 55,
+      "createdAt": "2016-11-20T20:56:46.324Z",
+      "updatedAt": "2016-11-20T20:56:46.324Z",
+      "id": 2
+    }
+  ],
+  "rowCount": 1
+}
+</pre>
+
+          <h3>5.0 Updating an It (Invested Time)</h3>
+
+          <p> Route to send </p>
+<pre>
+ PUT /it/1
+
+ data { duration : 35 , investedTimeAt : 1 }
+</pre>
+
+          <p>Server response</p>
+
+<pre>
+ {
+  "status": 200,
+  "message": "It updated successfully."
+ }
+</pre>
+
+
+          <h3>6.0 Deleting an It (Invested Time)</h3>
+
+          <p> Route to send the request </p>
+<pre>
+ DELETE /it/1
+</pre>
+
+          <p>Server response</p>
+
+<pre>
+ {
+  "status": 200,
+  "message": "It deleted successfully."
+ }
+</pre>
+
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>

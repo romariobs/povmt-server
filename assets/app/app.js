@@ -54,6 +54,11 @@ app.config(function($routeProvider){
       controller : 'Docs',
       templateUrl: 'app/docs/index.html'
     })
+    .when('/docs/:page',
+    {
+      controller : 'Docs',
+      templateUrl: 'app/docs/index.html'
+    })
     .otherwise({
       redirectTo: '/'
     });
