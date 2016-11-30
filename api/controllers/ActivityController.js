@@ -10,26 +10,28 @@
  */
 
 module.exports = {
-	
 
 	/**
 	* @method ActivityController#find
 	* @desc API Route from 'GET /activity', to retrieve all activities.
 	*/
 	find : function(req, res){
-		
-		var query = Activity.find();
+
+		  var query = Activity.find();
 
 	    var limit = req.param('limit');
 	    var sort = req.param('sort');
 	    var skip = req.param('skip');
 
-	    //Allowed filter by creator 
-	    var creator = req.param('creator'); 
+	    //Allowed filter by creator
+	    var creator = req.param('creator');
 
 	    if (creator){
 	    	query.where({ "creator" : creator });
 	    }
+      else {
+        return res.json({ status : 400 , message  : "Bad Request, Missing parameter creator! "});
+      }
 
 	    if (limit){
 	      query.limit(limit);
@@ -83,17 +85,17 @@ module.exports = {
 	* @desc API Route from 'GET /activity/:id', to retrieve one specific activity.
 	*/
 	findOne : function(req, res){
-		
+
 		var responseObject = {};
 
 		Activity.findOne( req.param('id'), function foundActivity(err, activity){
-			
+
 			if (err){
 				responseObject = {
 					status : 500,
 					message : "error search activity with id " + req.param('id'),
 					error : err
-				}
+				};
 				return res.json(responseObject);
 			}
 
@@ -101,19 +103,19 @@ module.exports = {
 				responseObject = {
 					status : 404,
 					message : "Activity doesn\'t exist."
-				}
+				};
 				return res.json(responseObject);
 			}
 
 			responseObject = {
 				status : 200,
 				activity : activity
-			}
+			};
 			return res.json(responseObject);
 		});
 
 	},
-	
+
 	/**
 	* @method ActivityController#find
 	* @desc API Route from 'POST /activity', to create a new activity.
@@ -135,7 +137,7 @@ module.exports = {
 
 		var responseObject = {};
 
-	    User.findOne(creator, function foundUser(err, user){	
+	    User.findOne(creator, function foundUser(err, user){
 
 	    	if (!user){
 	    		responseObject = {
@@ -152,7 +154,7 @@ module.exports = {
 	    				status : 500,
 	    				message : "Error creating activity",
 	    				error : err
-	    			}	
+	    			}
 	    			return res.json(responseObject);
 	    		}
 
@@ -164,7 +166,7 @@ module.exports = {
 	    		return res.json(responseObject);
 	    	});
 
-	    });		
+	    });
 
 	},
 
@@ -195,7 +197,7 @@ module.exports = {
 			}
 
 			Activity.update(req.param('id'), req.params.all(), function activityUpdated(err){
-		     
+
 		      if(err){
 		        responseObject = {
 		          status : 500,
@@ -215,7 +217,7 @@ module.exports = {
 
 		});
 
-	    
+
 	},
 
 	/**
@@ -263,7 +265,7 @@ module.exports = {
 	        return res.json(responseObject);
 	      });
 
-	    });		
+	    });
 	}
 
 };

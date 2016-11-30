@@ -19,10 +19,10 @@ module.exports = {
 	find : function(req, res, next){
 
 		var INVALID_DATE = "Invalid Date";
-    var INDEX_NOT_FOUND = -1;
+        var INDEX_NOT_FOUND = -1;
 
 		var responseObject = {};
-    var buildHistoryResponse = null;
+        var buildHistoryResponse = null;
 
 		var start = req.param('startDate');
 		var end = req.param('endDate');
@@ -32,23 +32,23 @@ module.exports = {
 		var endDate	= new Date(end);
 
 		if (!start){
-			responseObject = { status : 400,  message : "Bed Request, missing startDate!"};
+			responseObject = { status : 400,  message : "Bad Request, missing startDate!"};
 			return res.json(responseObject);
 		}
 		else if (!end){
-			responseObject = { status : 400,	message : "Bed Request, missing endDate!" };
+			responseObject = { status : 400,	message : "Bad Request, missing endDate!" };
 			return res.json(responseObject);
 		}
 		else if (!creator){
-			responseObject =  { status : 400, message : "Bed Request, missing creator!"};
+			responseObject =  { status : 400, message : "Bad Request, missing creator!"};
 			return res.json(responseObject);
 		}
 		else if (startDate == INVALID_DATE || endDate == INVALID_DATE){
-			responseObject = {	status : 400,  message : "Bed Request, Invalid date received!"};
+			responseObject = {	status : 400,  message : "Bad Request, Invalid date received!"};
 			return res.json(responseObject);
 		}
 		else if (startDate.getTime() > endDate.getTime()){
-      responseObject = { status : 400,  message : "Bed Request, The start the should be less than end date!" };
+      responseObject = { status : 400,  message : "Bad Request, The start the should be less than end date!" };
 			return res.json(responseObject);
 		}
 		else {
@@ -65,15 +65,11 @@ module.exports = {
 				}
 				else {
 
-          var activities = [];
-
           if (its.length > 0){
-            var currentIt = its[0];
-
             var activityIds = [];
 
             its.forEach(function(it){
-              if (activities.indexOf(it.investedTimeAt) == INDEX_NOT_FOUND) {
+              if (activityIds.indexOf(it.investedTimeAt) == INDEX_NOT_FOUND) {
                 activityIds.push(it.investedTimeAt);
               }
             });
@@ -94,19 +90,22 @@ module.exports = {
 
               for (var i=0 ; i < activities.length; i++){
                 var activityHistory = activities[i];
-                var historyItem = {};
-                var groupedIts = [];
-                for (var j=0; j < its.length; j++){
-                  var itHistory = its[j];
-                  if (itHistory.investedTimeAt === activityHistory.id ){
-                    groupedIts.push(itHistory);
-                  }
-                }
 
-                historyItem["activity"] = activityHistory;
-                historyItem["its"] = groupedIts;
-                groupedHistory.push(historyItem);
+	                var historyItem = {};
+	                var groupedIts = [];
+	                for (var j=0; j < its.length; j++){
+	                  var itHistory = its[j];
+	                  if (itHistory.investedTimeAt == activityHistory.id){
+	                    groupedIts.push(itHistory);
+	                  }
+	                }
 
+                  if (activityHistory.creator == creator){
+                    console.log('creator ', creator, 'activity createor ', activityHistory.creator);
+	                  historyItem["activity"] = activityHistory;
+	                  historyItem["its"] = groupedIts;
+	                  groupedHistory.push(historyItem);
+            	    }
               }
               //build the response object
               responseObject = {
@@ -115,8 +114,6 @@ module.exports = {
                 startDate : start,
                 endDate : end,
                 history : {
-                  its : its,
-                  activities : activities,
                   groupedHistory : groupedHistory
                 }
               };

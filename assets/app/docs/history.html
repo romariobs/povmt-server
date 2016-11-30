@@ -172,14 +172,14 @@
 // GET /history
 {
   "status": 400,
-  "message": "Bed Request, missing startDate!"
+  "message": "Bad Request, missing startDate!"
 }
 
 //GET /history?startDate=2016-T0-16
 
 {
   "status": 400,
-  "message": "Bed Request, missing endDate!"
+  "message": "Bad Request, missing endDate!"
 }
 
 
@@ -187,20 +187,20 @@
 
 {
   "status": 400,
-  "message": "Bed Request, missing creator!"
+  "message": "Bad Request, missing creator!"
 }
 
 // GET /history?startDate=2016-T0-16&endDate=2016-11-8&creator=5
 {
   "status": 400,
-  "message": "Bed Request, Invalid date received!"
+  "message": "Bad Request, Invalid date received!"
 }
 
 
 // GET /history?startDate=2016-11-16&endDate=2016-11-8&creator=5
 {
   "status": 400,
-  "message": "Bed Request, The start the should be less than end date!"
+  "message": "Bad Request, The start the should be less than end date!"
 }
 
 </pre>

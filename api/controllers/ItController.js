@@ -1,27 +1,33 @@
 /**
- * ItController - Controller to manager request addressed to /it route. 
+ * ItController - Controller to manager request addressed to /it route.
  *
  * @description :: Server-side logic for managing its
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
 module.exports = {
-	
+
 
 	/**
 	* @method ItController#find
 	* @desc API Route from 'GET /it', to retrieve all IT.
 	*/
 	find : function(req, res){
-		
-		var query = It.find();
+
+      var investedTimeAt = req.param('investedTimeAt');
+
+      if (!investedTimeAt){
+        return res.json({ status : 400, message : "Bad Request, missing parameter investedTimeAt!"});
+      }
+    
+		  var query = It.find();
 
 	    var limit = req.param('limit');
 	    var sort = req.param('sort');
 	    var skip = req.param('skip');
 
-	    //Allowed filter by Activity 
-	    var activityId = req.param('investedTimeAt'); 
+	    //Allowed filter by Activity
+	    var activityId = req.param('investedTimeAt');
 
 	    if (activityId){
 	    	query.where({ "investedTimeAt" : activityId });
@@ -78,17 +84,17 @@ module.exports = {
 	* @desc API Route from 'GET it/:id', to one specific IT.
 	*/
 	findOne : function(req, res){
-		
+
 		var responseObject = {};
 
 		It.findOne( req.param('id'), function foundIt(err, it){
-			
+
 			if (err){
 				responseObject = {
 					status : 500,
 					message : "error search It with id " + req.param('id'),
 					error : err
-				}
+				};
 				return res.json(responseObject);
 			}
 
@@ -96,25 +102,25 @@ module.exports = {
 				responseObject = {
 					status : 404,
 					message : "It doesn\'t exist."
-				}
+				};
 				return res.json(responseObject);
 			}
 
 			responseObject = {
 				status : 200,
 				it : it
-			}
+			};
 			return res.json(responseObject);
 		});
 
 	},
-	
+
 	/**
 	* @method ItController#create
 	* @desc API Route from 'POST /it' , to one create a new  IT.
 	*/
 	create : function(req, res){
-		
+
 		var ativityId = req.param('investedTimeAt');
 		var createdAt = req.param('createdAt');
 
@@ -129,7 +135,7 @@ module.exports = {
 			it["createdAt"] = createdAt;
 		}
 
-	    Activity.findOne(ativityId, function foundActivity(err, activity){	
+	    Activity.findOne(ativityId, function foundActivity(err, activity){
 
 	    	if (!activity){
 	    		responseObject = {
@@ -146,7 +152,7 @@ module.exports = {
 	    				status : 500,
 	    				message : "Error creating It (Invested Time)",
 	    				error : err
-	    			}	
+	    			}
 	    			return res.json(responseObject);
 	    		}
 
@@ -189,7 +195,7 @@ module.exports = {
 			}
 
 			It.update(req.param('id'), req.params.all(), function itUpdated(err){
-		     
+
 		      if(err){
 		        responseObject = {
 		          status : 500,
