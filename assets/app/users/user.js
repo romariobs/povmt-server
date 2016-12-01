@@ -80,7 +80,7 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
       row.push(users[i].id);
       row.push('<i class="fa fa-user-circle fa-2x"></i> <a href="#/activities/'+users[i].id+'">' +users[i].name+'</a>');
       row.push(users[i].email);
-      row.push('<a class="delete-user-action"><i  id="'+users[i].id+'"class="fa fa-trash"></i></i></a>');
+      row.push('<a><i  id="'+users[i].id+'"class="fa fa-trash"></i></i></a>');
       dataset.push(row);
     }
     return dataset;

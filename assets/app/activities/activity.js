@@ -13,6 +13,8 @@ app.controller("Activity", ['$scope', '$routeParams', 'Rest', '$timeout',
 
     $scope.activities = [];
 
+    $scope.activityId = undefined;
+
     var getActivities = function(){
 
 		Rest.get('/activity?creator=' + userId).then(function(response){
@@ -75,7 +77,8 @@ app.controller("Activity", ['$scope', '$routeParams', 'Rest', '$timeout',
       '<a href="#/its/'+activity.id+'">' +activity.title+'</a>',
       activity.description,
       getTime(activity.createdAt),
-      getTime(activity.updatedAt)
+      getTime(activity.updatedAt),
+      '<a><i class="fa fa-trash"></i></i></a>'
     ];
     $("#activitiesTable").dataTable().fnAddData(data);
   };
@@ -90,6 +93,7 @@ app.controller("Activity", ['$scope', '$routeParams', 'Rest', '$timeout',
       row.push(activities[i].description);
       row.push(getTime(activities[i].createdAt));
       row.push(getTime(activities[i].updatedAt));
+      row.push('<a><i  id="'+activities[i].id+'"class="fa fa-trash"></i></i></a>');
       dataset.push(row);
     }
     return dataset;
@@ -101,15 +105,49 @@ app.controller("Activity", ['$scope', '$routeParams', 'Rest', '$timeout',
       {title : "Activity Title" },
       {title : "Description"},
       {title : "Created At"},
-      {title : "Updated At"}
+      {title : "Updated At"},
+      {title : "Options"}
     ];
     return columns;
   };
 
-  getActivities();
+  var getTime = function(timestamp){
+    return moment(timestamp).fromNow();
+  };
 
-	var getTime = function(timestamp){
-		return moment(timestamp).fromNow();
-	};
+  var deleteActivity = function(){
+
+    if (typeof ($scope.activityId) !== "undefined"){
+
+      alertify.confirm("Do you want to delete this activity?", function () {
+        // user clicked "ok"
+        Rest.delete('/activity/'+$scope.activityId).then(function(response){
+
+          if (response.status == HTTP_OK){
+            alertify.success("Deleted activity!");
+          }
+          else {
+            alertify.error(response.message);
+          }
+
+        });
+      }, function() {
+        // user clicked "cancel"
+        $scope.activityId = undefined;
+      });
+    }
+  };
+
+    //register listeners
+  $timeout(function(){
+
+    $(".fa-trash").click(function(event) {
+      $scope.activityId = event.target.id;
+      deleteActivity();
+    });
+
+  }, 500, false);
+
+  getActivities();
 
 }]);
