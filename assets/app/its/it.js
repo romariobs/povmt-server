@@ -76,7 +76,8 @@ app.controller("It", ['$scope' , '$routeParams', '$timeout', 'Rest',
       it.id,
       it.duration,
       getTime(it.createdAt),
-      getTime(it.updatedAt)
+      getTime(it.updatedAt),
+      '<a><i id="'+ it.id+'" class="fa fa-trash"></i></i></a>'
     ];
     $("#itsTable").dataTable().fnAddData(data);
   };
@@ -89,6 +90,7 @@ app.controller("It", ['$scope' , '$routeParams', '$timeout', 'Rest',
       row.push(its[i].duration);
       row.push(getTime(its[i].createdAt));
       row.push(getTime(its[i].updatedAt));
+      row.push('<a><i  id="'+its[i].id+'"class="fa fa-trash"></i></a>');
       dataset.push(row);
     }
     return dataset;
@@ -99,12 +101,46 @@ app.controller("It", ['$scope' , '$routeParams', '$timeout', 'Rest',
       {title : "ID"},
       {title : "Duration" },
       {title : "Created At"},
-      {title : "Updated At"}
+      {title : "Updated At"},
+      {title : "Options"}
     ];
     return columns;
   };
 
-	getIts();
+  var deleteIt = function(){
 
-  	console.log('it for activity ', activityId );
+    if (typeof ($scope.itId) !== "undefined"){
+
+      alertify.confirm("Do you want to delete this Invested Time?", function () {
+        // user clicked "ok"
+        Rest.delete('/it/'+$scope.itId).then(function(response){
+
+          if (response.status == HTTP_OK){
+            alertify.success("Deleted Invested Time!");
+          }
+          else {
+            alertify.error(response.message);
+          }
+
+        });
+      }, function() {
+        // user clicked "cancel"
+        $scope.itId = undefined;
+      });
+    }
+  };
+
+  //register listeners
+  $timeout(function(){
+
+    $(".fa-trash").click(function(event) {
+      $scope.itId = event.target.id;
+      deleteIt();
+    });
+
+  }, 500, false);
+
+
+  getIts();
+
 }]);

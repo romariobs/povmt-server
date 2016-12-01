@@ -78,7 +78,7 @@ app.controller("Activity", ['$scope', '$routeParams', 'Rest', '$timeout',
       activity.description,
       getTime(activity.createdAt),
       getTime(activity.updatedAt),
-      '<a><i class="fa fa-trash"></i></i></a>'
+      '<a><i id="'+ activity.id+'" class="fa fa-trash"></i></a>'
     ];
     $("#activitiesTable").dataTable().fnAddData(data);
   };
@@ -93,7 +93,7 @@ app.controller("Activity", ['$scope', '$routeParams', 'Rest', '$timeout',
       row.push(activities[i].description);
       row.push(getTime(activities[i].createdAt));
       row.push(getTime(activities[i].updatedAt));
-      row.push('<a><i  id="'+activities[i].id+'"class="fa fa-trash"></i></i></a>');
+      row.push('<a><i  id="'+activities[i].id+'" class="fa fa-trash"></i></i></a>');
       dataset.push(row);
     }
     return dataset;
@@ -138,7 +138,7 @@ app.controller("Activity", ['$scope', '$routeParams', 'Rest', '$timeout',
     }
   };
 
-    //register listeners
+   //register listeners
   $timeout(function(){
 
     $(".fa-trash").click(function(event) {

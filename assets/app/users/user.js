@@ -64,9 +64,9 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
   var addRow = function(user){
       var data = [
         user.id,
-        '<a href="#/activities/'+user.id+'">' +user.name+'</a>',
+        '<i class="fa fa-user-circle fa-2x"></i> <a href="#/activities/'+user.id+'">' +user.name+'</a>',
         user.email,
-        '<a><i class="fa fa-trash"></i></i></a>'
+        '<a><i id="'+user.id+'" class="fa fa-trash"></i></a>'
       ];
       $("#usersTable").dataTable().fnAddData(data);
   };
@@ -80,7 +80,7 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
       row.push(users[i].id);
       row.push('<i class="fa fa-user-circle fa-2x"></i> <a href="#/activities/'+users[i].id+'">' +users[i].name+'</a>');
       row.push(users[i].email);
-      row.push('<a><i  id="'+users[i].id+'"class="fa fa-trash"></i></i></a>');
+      row.push('<a><i  id="'+users[i].id+'" class="fa fa-trash"></i></i></a>');
       dataset.push(row);
     }
     return dataset;
