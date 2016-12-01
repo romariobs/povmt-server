@@ -67,7 +67,23 @@ app.service('Rest', ['$q', '$http', function($q, $http) {
    * @param {object} data - The data to send.
    */
   this.put = function(url, data){
-     // TODO ... implementation
+
+    var deferred  = $q.defer();
+
+    var request = {
+      method : "PUT",
+      url: url,
+      data : data
+    };
+
+    $http(request).then(function(response){
+      deferred.resolve(response.data);
+    }, function(err){
+      deferred.reject(err);
+    });
+
+    return deferred.promise;
+
   };
 
   /**
@@ -75,10 +91,22 @@ app.service('Rest', ['$q', '$http', function($q, $http) {
    * @desc Doing a DELETE call to Luemas REST API.
    *
    * @param {string} url - The endpoint to call.
-   * @param {object} id - The resource id to send.
    */
-  this.delete = function(url, id){
-    // TODO ... implementation
+  this.delete = function(url){
+    var deferred  = $q.defer();
+
+    var request = {
+      method : "DELETE",
+      url: url
+    };
+
+    $http(request).then(function(response){
+      deferred.resolve(response.data);
+    }, function(err){
+      deferred.reject(err);
+    });
+
+    return deferred.promise;
   };
 
 
