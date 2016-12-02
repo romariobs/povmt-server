@@ -17,8 +17,7 @@
 // (if you're using LESS with the built-in default config, you'll want
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
-  'resources/css/bootstrap.min.css',
-  'resources/css/app.css'
+  'bower_components/bootstrap/dist/css/bootstrap.min.css'
 ];
 
 
@@ -28,12 +27,14 @@ var jsFilesToInject = [
 
   // Load sails.io before everything else
   'resources/js/dependencies/sails.io.js',
-  'resources/js/dependencies/jquery.min.js',
-  'resources/js/jquery.dataTables.min.js',
   // Dependencies like jQuery, or Angular are brought in here
   'resources/js/dependencies/**/*.js',
-  'resources/js/angular.min.js',
-  'resources/js/angular-route.js',
+  'bower_components/tether/dist/js/tether.min.js',
+  'bower_components/jquery/dist/jquery.min.js',
+  'bower_components/bootstrap/dist/js/bootstrap.min.js',
+  'bower_components/angular/angular.min.js',
+  'bower_components/angular-route/angular-route.min.js',
+  'bower_components/alertifyjs/dist/js/alertify.js',
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
   'resources/js/**/*.js'

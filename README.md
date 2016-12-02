@@ -2,16 +2,18 @@
 
 Web server to provide storage and Restful API for client applications, locally
 on development environment we're using MySQL database and in the production
-Environment we're connectiong with MongoDB database.
+Environment we're connecting with MongoDB database.
+
+This API provide endpoint for users, activities, invested time and history data.
+
+Our model is organization as following:
+
+* User has a collection of activities
+* Each activity belong to single user
+* An Activity has as collection of invested time
+* Activity and Invested times are items for historical data.
 
 We're using mocha and supertest to perform automated tests
-
-
-## Creating the user database and grant permissions (MySQL Running Locally)
-
-- CREATE USER 'povmt'@'localhost' IDENTIFIED BY 'povmt';
-- GRANT ALL PRIVILEGES ON * . * TO 'povmt'@'localhost';
-- CREATE DATABASE povmt_server_db;
 
 ## Running test cases
 Only type: npm test (Still not implemented)
@@ -33,7 +35,14 @@ Only type: npm test (Still not implemented)
 
 ## Installed Libraries Front-end
 
-- 27/11/2016 alertify.js (https://alertifyjs.org/#getting-started)
+- 2016/12/02 highcharts (http://www.highcharts.com/docs/getting-started/install-from-bower)
+- 2016/12/02 angular-route (https://github.com/angular/bower-angular-route)
+- 2016/12/02 alertifyjs (https://alertifyjs.org/)
+- 2016/12/02 moment (http://momentjs.com/)
+- 2016/12/02 datatables (https://datatables.net/download/bower)
+- 2016/12/02 angularjs (https://angularjs.org/)
+- 2016/12/02 bootstrap 4 (https://v4-alpha.getbootstrap.com/getting-started/download/)
+- 2016/11/27 alertify.js (https://alertifyjs.org/#getting-started)
 
 ## Installed Libraries Backend
 
@@ -46,8 +55,8 @@ Only type: npm test (Still not implemented)
 - supertest (https://www.npmjs.com/package/supertest)
 - mysql (https://www.npmjs.com/package/mysql)
 
-## Deployment Server Address
--
+## Deployment Server Address (production deploy)
+- https://povmt.herokuapp.com
 
 ## Remote Databases
 
