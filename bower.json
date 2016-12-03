@@ -34,5 +34,11 @@
     "components-font-awesome": "^4.7.0",
     "datatables.net-bs": "^1.10.12",
     "highcharts": "^5.0.5"
+  },
+  "exportsOverride": {
+    "*": {
+      "js": "**/*.js",
+      "css": "**/*.css"
+    }
   }
 }
