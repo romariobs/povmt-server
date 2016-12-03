@@ -2,7 +2,7 @@
   "name": "povmt-server",
   "private": true,
   "version": "0.0.0",
-  "description": "a Sails application",
+  "description": "Web service to provide Rest API for mobile client applications.",
   "keywords": [],
   "dependencies": {
     "bcrypt": "^0.8.7",
@@ -36,5 +36,8 @@
     "url": "git://github.com/anonymous node/sails user/povmt-server.git"
   },
   "author": "anonymous node/sails user",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "grunt-bower-task": "^0.4.0"
+  }
 }

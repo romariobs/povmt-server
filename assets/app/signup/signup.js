@@ -1,6 +1,7 @@
 /**
- * Created by Samuel T. C. santos on 27/11/2016.
+ * Copyright @ 2016 by Samuel T. C. Santos, All rights reserved.
  */
+
 app.controller("SignUp", ['$scope', 'Rest','$timeout',
   function($scope, Rest, $timeout){
 

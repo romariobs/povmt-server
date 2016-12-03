@@ -1,8 +1,9 @@
 /**
- * Application for Manager the Clients data
- *
- * Created by Samuel T. C. Santos on 27/08/2015.
- *
+ * Copyright @ 2016 by Samuel T. C. Santos, All rights reserved.
+ */
+
+/**
+ * Application for Manager the users data.
  */
 
 var app = angular.module('PovMTWebAdmin', ['ngRoute'])

@@ -1,6 +1,7 @@
 /**
- * Created by Samuel T. C. Santos on 27/11/2016.
+ * Copyright @ 2016 by Samuel T. C. Santos, All rights reserved.
  */
+
 
 app.controller("History", ['$scope', function($scope){
 

@@ -1,5 +1,5 @@
 /**
- * Copyright @ 2015 by Samuel T. C. Santos, All rights reserved.
+ * Copyright @ 2016 by Samuel T. C. Santos, All rights reserved.
  */
 
 /**
