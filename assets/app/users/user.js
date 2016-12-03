@@ -64,7 +64,7 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
   var addRow = function(user){
       var data = [
         user.id,
-        '<i class="fa fa-user-circle fa-2x"></i> <a href="#/activities/'+user.id+'">' +user.name+'</a>',
+        '<i class="fa fa-user-circle fa-2x"></i> <a href="#/profile/'+user.id+'">' +user.name+'</a>',
         user.email,
         '<a><i id="'+user.id+'" class="fa fa-trash"></i></a>'
       ];
@@ -78,7 +78,7 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
     for (var i=0; i < users.length; i++){
       var row = [];
       row.push(users[i].id);
-      row.push('<i class="fa fa-user-circle fa-2x"></i> <a href="#/activities/'+users[i].id+'">' +users[i].name+'</a>');
+      row.push('<i class="fa fa-user-circle fa-2x"></i> <a href="#/profile/'+users[i].id+'">' +users[i].name+'</a>');
       row.push(users[i].email);
       row.push('<a><i  id="'+users[i].id+'" class="fa fa-trash"></i></i></a>');
       dataset.push(row);

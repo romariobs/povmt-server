@@ -1,0 +1,56 @@
+
+<div class="container">
+
+
+  <div class="card card-block">
+    <h4 class="card-title">Profile </h4>
+
+    <div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3">
+
+        <div class="card text-xs-center">
+          <div class="card-header">
+            Picture
+          </div>
+          <div class="card-block">
+            <h4 class="card-title">Admin</h4>
+            <p class="card-text">.</p>
+            <a href="#" class="btn btn-primary">Upload Image</a>
+          </div>
+          <div class="card-footer text-muted">
+            <li class="list-group-item"> {{ getTime(user.createdAt) }}</li>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-9 col-sm-9 col-xs-9">
+
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Active</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Options</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#/activities/{{ user.id }}">See Activities</a>
+            </div>
+          </li>
+
+        </ul>
+
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Id</strong> {{ user.id}}</li>
+          <li class="list-group-item"><strong>Name</strong> {{ user.name }}</li>
+          <li class="list-group-item"><strong>Email</strong> {{ user.email }}</li>
+          <li class="list-group-item"><strong>Created At</strong> {{ getTime(user.createdAt) }}</li>
+          <li class="list-group-item"><strong>Role</strong> </li>
+        </ul>
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>

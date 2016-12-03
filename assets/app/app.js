@@ -30,6 +30,11 @@ app.config(function($routeProvider){
       controller : 'User',
       templateUrl: 'app/users/user.html'
     })
+    .when('/profile/:userId',
+    {
+      controller : 'Profile',
+      templateUrl: 'app/profile/profile.html'
+    })
     .when('/activities/:userId',
     {
       controller : 'Activity',
