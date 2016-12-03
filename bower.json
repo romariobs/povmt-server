@@ -44,6 +44,10 @@
       "js" : "**/highcharts.js",
       "css" : "**/highcharts.css"
     },
+    "components-font-awesome": {
+      "fonts": "fonts/*",
+      "css": "css/font-awesome.css"
+    },
     "*": {
       "js": "**/*.min.js",
       "css": "**/*.min.css"
