@@ -36,9 +36,17 @@
     "highcharts": "^5.0.5"
   },
   "exportsOverride": {
+    "alertifyjs" : {
+      "js" : "**/alertify.js",
+      "css" : "**/alertify.css"
+    },
+    "highcharts" : {
+      "js" : "**/highcharts.js",
+      "css" : "**/highcharts.css"
+    },
     "*": {
-      "js": "**/*.js",
-      "css": "**/*.css"
+      "js": "**/*.min.js",
+      "css": "**/*.min.css"
     }
   }
 }
