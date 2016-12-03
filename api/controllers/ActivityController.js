@@ -281,7 +281,60 @@ module.exports = {
 	      });
 
 	    });
-	}
+	},
+
+  picture : function(req, res, next){
+
+    var cloudinary = CloudinaryService.getInstance();
+
+    var uploadFile = req.file('picture');
+
+    if (!uploadFile){
+      return res.json({ status : 400, message : "Bad Request, missing parameter picture or invalid file sent!"});
+    }
+
+    var activityId = req.param('activityId');
+
+    if (!activityId){
+      return res.json({ status : 400, message : "Bad Request, missing parameter usedId!"});
+    }
+
+    uploadFile.upload(function onUploadComplete(err, files){
+      // Files will be uploaded to .tmp/uploads
+      if (err) {
+        return res.serverError(err);
+      }
+
+      //Upload image to Cloudinary server
+      cloudinary.uploader.upload(files[0].fd, function(result){
+
+        Activity.findOne(activityId, function foundUser(err, activity){
+
+          if (err){
+            return res.json({ status : 500, message : "Server Internal Error, problems searching activity!"});
+          }
+
+          if (!activity){
+            return res.json({ status : 404, message : "Not Found, activity not found id =" + activityId });
+          }
+
+          activity.picture = result.url;
+
+          Activity.update(activityId, activity , function updatedActivityPicture(err){
+
+            if (err) {
+              return res.json({ status : 500, message : "Internal Server Error, fail to update activity!" });
+            }
+
+            return res.json({status : 200, activity: activity });
+          });
+        });
+      });
+
+    });
+
+  }
+
 
 };
 

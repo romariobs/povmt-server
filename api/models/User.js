@@ -30,6 +30,15 @@ module.exports = {
   		type : 'string'
   	},
 
+    //USER, DEVELOPER, ADMIN
+    role : {
+      type : 'string'
+    },
+
+    picture: {
+      type : 'string'
+    },
+
     //Add a reference to Activity
     activities: {
       collection : 'activity',
@@ -42,7 +51,7 @@ module.exports = {
       delete obj.password;
       return obj;
     }
-	
+
   }
 };
 

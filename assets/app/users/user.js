@@ -108,7 +108,6 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
 
         });
       }, function() {
-        // user clicked "cancel"
         $scope.userSelectedId = undefined;
       });
     }

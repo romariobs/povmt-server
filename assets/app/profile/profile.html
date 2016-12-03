@@ -14,8 +14,12 @@
           </div>
           <div class="card-block">
             <h4 class="card-title">Admin</h4>
-            <p class="card-text">.</p>
-            <a href="#" class="btn btn-primary">Upload Image</a>
+            <img id="picture-profile" class="img-circle" width="80" src="{{ getPictureUrl( user.picture) }}" />
+            <div class="form-group">
+              <input class="btn btn-primary btn-sm" ng-click="openUploadModal()" value="Update Image"/>
+            </div>
+
+
           </div>
           <div class="card-footer text-muted">
             <li class="list-group-item"> {{ getTime(user.createdAt) }}</li>
@@ -50,7 +54,42 @@
 
     </div>
 
-
   </div>
 
 </div>
+
+<div id="uploadModal" class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title">User Picture</h5>
+      </div>
+      <div class="modal-body">
+
+        <div class="card card-outline-info text-xs-center">
+          <div class="card-block">
+            <img id="preview" src="http://placehold.it/80x80" />
+          </div>
+        </div>
+
+        <form id="uploader-form" enctype="multipart/form-data">
+          <div class="form-group">
+            <label>Choose a image</label>
+            <input id="picture-uploader"  accept="image/*"  type="file" multiple="multiple" />
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" ng-click="uploadFile()" class="btn btn-primary">Send</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+

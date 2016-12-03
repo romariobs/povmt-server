@@ -1,5 +1,5 @@
 /*
-* @copyright 2016 - Samuel T. C. Santos
+* @Copyright 2016 - Samuel T. C. Santos, All rights reserved.
 */
 
 var bcrypt = require('bcrypt');
@@ -18,7 +18,7 @@ module.exports = {
 	* @desc API Route from 'GET /user', to retrieve all users.
 	*/
 	find : function(req, res){
-		
+
 		var query = User.find();
 
 	    var limit = req.param('limit');
@@ -75,7 +75,7 @@ module.exports = {
 		var responseObject = {};
 
 		User.findOne( req.param('id'), function foundUser(err, user){
-			
+
 			if (err){
 				responseObject = {
 					status : 500,
@@ -100,7 +100,7 @@ module.exports = {
 			return res.json(responseObject);
 		});
 	},
-	
+
 	/**
 	* @method UseController#create
 	* @desc API Route from 'POST /user', to create a new user.
@@ -240,7 +240,7 @@ module.exports = {
 	* @desc API Route from 'POST /user/auth', to authenticate an user.
 	*/
 	auth : function(req, res, next){
-		
+
 		var responseObject = {};
 
 	    //Check for email and password in params sent via the request
@@ -300,7 +300,60 @@ module.exports = {
 	      });
 
 	    });
-	}
-	
+	},
+
+  picture : function(req, res, next){
+
+    var cloudinary = CloudinaryService.getInstance();
+
+    var uploadFile = req.file('picture');
+
+    if (!uploadFile){
+      return res.json({ status : 400, message : "Bad Request, missing parameter picture or invalid file sent!"});
+    }
+
+    var userId = req.param('userId');
+
+    if (!userId){
+      return res.json({ status : 400, message : "Bad Request, missing parameter usedId!"});
+    }
+
+    uploadFile.upload(function onUploadComplete(err, files){
+      // Files will be uploaded to .tmp/uploads
+      if (err) {
+        return res.serverError(err);
+      }
+
+      //Upload image to Cloudinary server
+      cloudinary.uploader.upload(files[0].fd, function(result){
+
+        User.findOne(userId, function foundUser(err, user){
+
+          if (err){
+            return res.json({ status : 500, message : "Server Internal Error, problems searching user!"});
+          }
+
+          if (!user){
+            return res.json({ status : 404, message : "Not Found, user not found id =" + userId });
+          }
+
+          user.picture = result.url;
+
+          User.update(userId, user , function updatedUserPicture(err){
+
+            if (err) {
+              return res.json({ status : 500, message : "Internal Server Error, fail to update user!" });
+            }
+
+            return res.json({status : 200, user: user });
+          });
+        });
+      });
+
+    });
+
+  }
+
+
 };
 

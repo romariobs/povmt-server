@@ -23,6 +23,7 @@ Only type: npm test (Still not implemented)
 
 ## Development change log
 
+- 03/12/2016 Integration with cloudinary server to add support for hosting images
 - 27/11/2016 Started Web Admin application
 - 26/11/2016 Started historical endpoint to access old data from user activities and invested time.
 - 20/11/2016 Configured new mLab account and created remote databases
@@ -35,6 +36,7 @@ Only type: npm test (Still not implemented)
 
 ## Installed Libraries Front-end
 
+- 2012/12/03 cloudinary (https://cloudinary.com)
 - 2016/12/02 highcharts (http://www.highcharts.com/docs/getting-started/install-from-bower)
 - 2016/12/02 angular-route (https://github.com/angular/bower-angular-route)
 - 2016/12/02 alertifyjs (https://alertifyjs.org/)
