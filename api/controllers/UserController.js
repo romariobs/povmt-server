@@ -129,7 +129,7 @@ module.exports = {
 	            return res.json(responseObject);
 	          }
 
-	          responseObject = { status : 201, user : user };
+	          responseObject = { status : 201, user : user,  token: jwToken.issue({id: user.id}) };
 
 	          return res.json(responseObject);
 	        });
@@ -287,7 +287,8 @@ module.exports = {
 	        if(match) {
 	          responseObject = {
 	            status : 200,
-	            user : user
+	            user : user,
+              token: jwToken.issue({id : user.id })
 	          };
 
 	        } else {

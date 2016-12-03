@@ -26,26 +26,11 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  // '*': true,
+  '*': ['isAuthorized'], // Everything restricted here
 
-  /***************************************************************************
-  *                                                                          *
-  * Here's an example of mapping some policies to run before a controller    *
-  * and its actions                                                          *
-  *                                                                          *
-  ***************************************************************************/
-	// RabbitController: {
+  'UserController' : {
+    'create' : true,   // allow access to create new user without token (avoid problems at initial access)
+    'auth' : true // allow access to authentication route without token (public)
+  }
 
-		// Apply the `false` policy as the default for all of RabbitController's actions
-		// (`false` prevents all access, which ensures that nothing bad happens to our rabbits)
-		// '*': false,
-
-		// For the action `nurture`, apply the 'isRabbitMother' policy
-		// (this overrides `false` above)
-		// nurture	: 'isRabbitMother',
-
-		// Apply the `isNiceToAnimals` AND `hasRabbitFood` policies
-		// before letting any users feed our rabbits
-		// feed : ['isNiceToAnimals', 'hasRabbitFood']
-	// }
 };

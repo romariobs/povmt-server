@@ -16,8 +16,10 @@ app.controller("Auth", ['$scope', '$timeout', 'Rest',
     var data = { email : $scope.email, password : $scope.password };
 
     Rest.post('/user/auth', data).then(function(response){
-
+      console.log(response);
       if (response.status == HTTP_OK){
+        //Saving the token to authenticate the future API calls.
+        Rest.setToken(response.token);
 
         alertify.success("Welcome, " + $scope.email.split('@')[0] );
 

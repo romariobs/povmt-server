@@ -10,6 +10,8 @@
  */
 app.service('Rest', ['$q', '$http', function($q, $http) {
 
+  this.token = undefined;
+
   /**
    * @method Rest#get
    * @desc Perform a GET request to server.
@@ -21,7 +23,11 @@ app.service('Rest', ['$q', '$http', function($q, $http) {
 
     var request = {
       method : "GET",
-      url: url
+      url: url,
+      headers : {
+        'Authorization' : 'Bearer ' + this.token,
+        'Content-Type': 'application/json'
+      }
     };
 
     $http(request).then(function(response){
@@ -47,7 +53,11 @@ app.service('Rest', ['$q', '$http', function($q, $http) {
     var request = {
       method : "POST",
       url: url,
-      data : data
+      data : data,
+      headers : {
+        'Authorization' : 'Bearer ' + this.token,
+        'Content-Type': 'application/json'
+      }
     };
 
     $http(request).then(function(response){
@@ -73,7 +83,11 @@ app.service('Rest', ['$q', '$http', function($q, $http) {
     var request = {
       method : "PUT",
       url: url,
-      data : data
+      data : data,
+      headers : {
+        'Authorization' : 'Bearer ' + this.token,
+        'Content-Type': 'application/json'
+      }
     };
 
     $http(request).then(function(response){
@@ -97,7 +111,11 @@ app.service('Rest', ['$q', '$http', function($q, $http) {
 
     var request = {
       method : "DELETE",
-      url: url
+      url: url,
+      headers : {
+        'Authorization' : 'Bearer ' + this.token,
+        'Content-Type': 'application/json'
+      }
     };
 
     $http(request).then(function(response){
@@ -109,5 +127,22 @@ app.service('Rest', ['$q', '$http', function($q, $http) {
     return deferred.promise;
   };
 
+  /**
+   * Set the authorization token for perform api calls.
+   *
+   * @param token {string} - the token
+   */
+  this.setToken = function(token){
+    this.token = token;
+  };
+
+  /**
+   * Get the authentication token.
+   *
+   * @returns {undefined|*}
+   */
+  this.getToken = function(){
+    return this.token;
+  }
 
 }]);

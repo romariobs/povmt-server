@@ -207,7 +207,7 @@ module.exports = {
 			 	responseObject = {
 		          status : 404,
 		          message : 'Activity doesn\'t exist.'
-		        }
+		        };
 		        return res.json(responseObject);
 			}
 
