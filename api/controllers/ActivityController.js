@@ -123,14 +123,20 @@ module.exports = {
 	create : function(req, res){
     var INDEX_NOT_FOUND = -1;
     var priorityValues = ["LOW", "MEDIUM", "HIGH"];
+    var categoryValues = ["WORK", "LEISURE"];
 
 		var creator = req.param('creator');
 		var createdAt = req.param('createdAt');
 
     var priority  = req.param('priority');
+    var category  = req.param('category');
 
     if (priority.indexOf(priority) == INDEX_NOT_FOUND){
-      return res.json({status : 400, message : "Bed Request, Invalid parameter priority!"})
+      return res.json({status : 400, message : "Bed Request, Invalid parameter priority, values are " + priorityValues.join('') });
+    }
+
+    if(categoryValues.indexOf(category) == INDEX_NOT_FOUND){
+      return res.json({status : 400, message : "Bed Request, Invalid parameter category, values are " + categoryValues.join('') });
     }
 
 		var activity = {
@@ -163,14 +169,14 @@ module.exports = {
 	    				status : 500,
 	    				message : "Error creating activity",
 	    				error : err
-	    			}
+	    			};
 	    			return res.json(responseObject);
 	    		}
 
 	    		responseObject = {
 	    			status : 201,
 	    			activity : newActivity
-	    		}
+	    		};
 
 	    		return res.json(responseObject);
 	    	});

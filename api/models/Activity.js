@@ -30,6 +30,10 @@ module.exports = {
       type : 'string'
     },
 
+    category : {
+      type : 'string'
+    },
+
     // Add a reference to It
     its : {
       collection : 'it',

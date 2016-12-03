@@ -11,6 +11,7 @@ app.controller("Activity", ['$scope', '$routeParams', 'Rest', '$timeout',
     $scope.description = "";
     $scope.createdAt = "";
     $scope.priority = "LOW";
+    $scope.category = "WORK";
 
     $scope.activities = [];
 
@@ -52,13 +53,14 @@ app.controller("Activity", ['$scope', '$routeParams', 'Rest', '$timeout',
 			createdAt : $scope.createdAt,
 			description : $scope.description,
 			creator : userId,
-      priority : $scope.priority
+      priority : $scope.priority,
+      category : $scope.category
 		};
 
 	    Rest.post('/activity', data).then(function(response){
 	      console.log(response);
 	      if (response.status == HTTP_CREATED ){
-	        alertify.success("Activity created :" + $scope.title );
+	        alertify.success("Activity created: " + $scope.title );
 	        $('#activityModal').modal('hide');
           addRow(response.activity);
 	      }
