@@ -10,6 +10,7 @@ app.controller("Activity", ['$scope', '$routeParams', 'Rest', '$timeout',
     $scope.title = "";
     $scope.description = "";
     $scope.createdAt = "";
+    $scope.priority = "LOW";
 
     $scope.activities = [];
 
@@ -50,7 +51,8 @@ app.controller("Activity", ['$scope', '$routeParams', 'Rest', '$timeout',
 			title: $scope.title,
 			createdAt : $scope.createdAt,
 			description : $scope.description,
-			creator : userId
+			creator : userId,
+      priority : $scope.priority
 		};
 
 	    Rest.post('/activity', data).then(function(response){

@@ -121,14 +121,23 @@ module.exports = {
 	* @desc API Route from 'POST /activity', to create a new activity.
 	*/
 	create : function(req, res){
+    var INDEX_NOT_FOUND = -1;
+    var priorityValues = ["LOW", "MEDIUM", "HIGH"];
 
 		var creator = req.param('creator');
 		var createdAt = req.param('createdAt');
 
+    var priority  = req.param('priority');
+
+    if (priority.indexOf(priority) == INDEX_NOT_FOUND){
+      return res.json({status : 400, message : "Bed Request, Invalid parameter priority!"})
+    }
+
 		var activity = {
 			title : req.param('title'),
 			description : req.param('description'),
-			creator : creator
+			creator : creator,
+      priority : priority
 		};
 
 		if (createdAt){
@@ -143,7 +152,7 @@ module.exports = {
 	    		responseObject = {
 	    			status : 404,
 	    			message : "User not found, id = " + creator
-	    		}
+	    		};
 	    		return res.json(responseObject);
 	    	}
 
