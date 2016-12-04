@@ -161,8 +161,6 @@ app.controller("Profile", ['$scope','$timeout', 'Rest' , '$routeParams',
 
       var blobFile = $('#picture-uploader')[0].files[0];
 
-      console.log(blobFile);
-
       var formData = new FormData();
       formData.append("picture", blobFile);
       formData.append("userId", $scope.user.id);
@@ -171,6 +169,9 @@ app.controller("Profile", ['$scope','$timeout', 'Rest' , '$routeParams',
         url: "/user/picture",
         type: "POST",
         data: formData,
+        headers : {
+          Authorization : 'Bearer ' + Rest.getToken()
+        },
         processData: false,
         contentType: false,
         success: function(response) {
