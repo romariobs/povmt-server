@@ -19,7 +19,7 @@ module.exports = {
 	*/
 	find : function(req, res){
 
-		var query = User.find();
+  		var query = User.find();
 
 	    var limit = req.param('limit');
 	    var sort = req.param('sort');

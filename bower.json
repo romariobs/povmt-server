@@ -48,6 +48,10 @@
       "fonts": "fonts/*",
       "css": "css/font-awesome.css"
     },
+    "datatables.net-dt" : {
+      "images": "images/*",
+      "css" : "css/*.min.css"
+    },
     "*": {
       "js": "**/*.min.js",
       "css": "**/*.min.css"

@@ -5,12 +5,9 @@
   <div class="card card-block">
     <h4 class="card-title">Users     <a ng-click="openUserModal()" class="btn btn-secondary btn-sm pull-right"><i class="fa fa-user-plus"></i> New</a>
     </h4>
-
     <table id="usersTable" class="table">
     </table>
-
   </div>
-
 
 </div>
 
@@ -40,7 +37,17 @@
 				<label for="inputPassword" class="sr-only">Password</label>
 				<input ng-model="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 			</div>
-		</form>
+
+      <div class="form-group">
+        <select ng-model="role"  class="form-control" placeholder="Role" >
+          <option value="USER">USER</option>
+          <option value="DEVELOPER">DEVELOPER</option>
+          <option value="ADMIN">ADMIN</option>
+        </select>
+      </div>
+
+
+    </form>
 
       </div>
       <div class="modal-footer">

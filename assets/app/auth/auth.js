@@ -37,6 +37,5 @@ app.controller("Auth", ['$scope', '$timeout', 'Rest',
     });
 
   };
-
-
+    
 }]);

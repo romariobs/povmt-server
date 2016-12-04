@@ -7,6 +7,7 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
 	$scope.name = "";
 	$scope.email = "";
 	$scope.password = "";
+  $scope.role = "USER";
 
   $scope.userSelectedId = undefined;
 
@@ -22,7 +23,7 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
             var options = {
               data : dataset,
               columns: getColumns(),
-              iDisplayLength: 10,
+              iDisplayLength: 5,
               aLengthMenu : [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
             };
 
@@ -35,13 +36,18 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
 	    });
 	};
 
+
+  var getUserPicture = function (pictureUrl){
+    return pictureUrl ? pictureUrl : "http://placehold.it/80x80";
+  };
+
 	$scope.openUserModal = function(){
 		$('#userModal').modal('show');
 	};
 
 	$scope.register = function(){
 
-		var data = { name: $scope.name, email : $scope.email, password : $scope.password };
+		var data = { name: $scope.name, email : $scope.email, password : $scope.password , role : $scope.role };
 
 	    Rest.post('/user', data).then(function(response){
 	      console.log(response);
@@ -64,7 +70,7 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
   var addRow = function(user){
       var data = [
         user.id,
-        '<i class="fa fa-user-circle fa-2x"></i> <a href="#/profile/'+user.id+'">' +user.name+'</a>',
+        '<img width="60" class="img-thumbnail" src="'+getUserPicture(user.picture)+'"/> <a href="#/profile/'+user.id+'">' +user.name+'</a>',
         user.email,
         '<a><i id="'+user.id+'" class="fa fa-trash"></i></a>'
       ];
@@ -78,7 +84,7 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
     for (var i=0; i < users.length; i++){
       var row = [];
       row.push(users[i].id);
-      row.push('<i class="fa fa-user-circle fa-2x"></i> <a href="#/profile/'+users[i].id+'">' +users[i].name+'</a>');
+      row.push('<img width="60" class="img-thumbnail" src="'+getUserPicture(users[i].picture)+'"/> <a href="#/profile/'+users[i].id+'">' +users[i].name+'</a>');
       row.push(users[i].email);
       row.push('<a><i  id="'+users[i].id+'" class="fa fa-trash"></i></i></a>');
       dataset.push(row);
@@ -96,16 +102,14 @@ app.controller("User", ['$scope','$timeout', 'Rest', function($scope, $timeout, 
     if (typeof ($scope.userSelectedId) !== "undefined"){
 
       alertify.confirm("Do you want to delete this user?", function () {
-        // user clicked "ok"
-        Rest.delete('/user/'+$scope.userSelectedId).then(function(response){
 
+        Rest.delete('/user/'+$scope.userSelectedId).then(function(response){
           if (response.status == HTTP_OK){
             alertify.success("Deleted user!");
           }
           else {
             alertify.error(response.message);
           }
-
         });
       }, function() {
         $scope.userSelectedId = undefined;

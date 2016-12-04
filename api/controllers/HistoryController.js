@@ -5,9 +5,10 @@
  *  * http://stackoverflow.com/questions/27371398/sails-mongo-get-result-between-two-dates
  *
  * Query Language documentation
- *   * https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md
- * @description :: Server-side logic for managing histories
- * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
+ *    https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md
+ *
+ * @description Manager to historical data from user activities.
+ *
  */
 
 module.exports = {
@@ -19,10 +20,10 @@ module.exports = {
 	find : function(req, res, next){
 
 		var INVALID_DATE = "Invalid Date";
-        var INDEX_NOT_FOUND = -1;
+    var INDEX_NOT_FOUND = -1;
 
 		var responseObject = {};
-        var buildHistoryResponse = null;
+    var buildHistoryResponse = null;
 
 		var start = req.param('startDate');
 		var end = req.param('endDate');
@@ -55,7 +56,7 @@ module.exports = {
 
 			var query = It.find();
 
-			var filter = { 	"createdAt" : { ">" : startDate,"<" : endDate } };
+			var filter = { 	"createdAt" : { ">=" : startDate,"<=" : endDate } };
 
 			query.where(filter).exec(function(err , its){
 
@@ -90,7 +91,6 @@ module.exports = {
 
               for (var i=0 ; i < activities.length; i++){
                 var activityHistory = activities[i];
-
 	                var historyItem = {};
 	                var groupedIts = [];
 	                for (var j=0; j < its.length; j++){
@@ -101,7 +101,6 @@ module.exports = {
 	                }
 
                   if (activityHistory.creator == creator){
-                    console.log('creator ', creator, 'activity createor ', activityHistory.creator);
 	                  historyItem["activity"] = activityHistory;
 	                  historyItem["its"] = groupedIts;
 	                  groupedHistory.push(historyItem);
@@ -119,15 +118,11 @@ module.exports = {
               };
               return res.json(responseObject);
             });
-
           }
-
 				}
 
 			});
 		}
-
-		console.log("start ", start , " end ", end , " user ", creator);
 
 	}
 

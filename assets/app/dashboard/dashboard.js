@@ -4,29 +4,56 @@
 
 app.controller("Dashboard", ['$scope','$timeout', 'Rest', function($scope, $timeout, Rest) {
 
-  var myChart = Highcharts.chart('chartUserVsActivity', {
-    chart: {
-      type: 'bar'
-    },
-    title: {
-      text: 'Frequency of activity creation by users'
-    },
-    xAxis: {
-      categories: ['Samuel Santos', 'Luana Santos', 'Ludmila Guedes' , 'Maisa Lins']
-    },
-    yAxis: {
-      title: {
-        text: 'Fruit eaten'
-      }
-    },
-    series: [{
-      name: 'Activity',
-      data: [1, 1, 4, 8]
-    }, {
-      name: 'It',
-      data: [5, 7, 3, 9]
-    }]
-  });
 
+  var drawActivityChart = function(usage){
+
+    var categories = [];
+    var values = [];
+
+    for (var i=0; i < usage.users.length; i++){
+      categories.push(usage.users[i].name);
+      values.push(usage.users[i].activities);
+    }
+
+    var activityChart = Highcharts.chart('chartUserVsActivity', {
+      chart: {
+        type: 'bar'
+      },
+      title: {
+        text: 'Activities by User'
+      },
+      xAxis: {
+        categories: categories
+      },
+      yAxis: {
+        title: {
+          text: 'Quantity'
+        }
+      },
+      series: [{
+        name: 'Number of Activities',
+        data: values
+      }]
+    });
+
+  };
+
+  var getDashboard = function(){
+
+    Rest.get('/dashboard').then(function(response){
+
+      if (response.status == HTTP_OK ){
+        $timeout(function(){
+          drawActivityChart(response);
+        }, 500, true);
+      }
+      else {
+        alertify.error(response.message);
+      }
+    });
+
+  };
+
+  getDashboard();
 
 }]);
